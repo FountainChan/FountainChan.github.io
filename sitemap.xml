@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fountainchan.github.io/life/42815.html</loc>
+    
+    <lastmod>2026-07-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://fountainchan.github.io/life/60749.html</loc>
     
     <lastmod>2026-07-13</lastmod>
@@ -20,25 +29,7 @@
   </url>
   
   <url>
-    <loc>https://fountainchan.github.io/life/418.html</loc>
-    
-    <lastmod>2026-07-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://fountainchan.github.io/tech/58871.html</loc>
-    
-    <lastmod>2026-07-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fountainchan.github.io/life/42815.html</loc>
     
     <lastmod>2026-07-13</lastmod>
     
@@ -178,13 +169,6 @@
   
   <url>
     <loc>https://fountainchan.github.io/tags/node/</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fountainchan.github.io/tags/%E9%81%93%E8%97%8F/</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
