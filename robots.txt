@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /img/
+Disallow: /libs/
+Allow: /
+Allow: /atom.xml
+Allow: /sitemap.xml
+Allow: /baidusitemap.xml
+Sitemap: https://fountainchan.github.io/sitemap.xml
