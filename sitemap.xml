@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fountainchan.github.io/life/42815.html</loc>
+    
+    <lastmod>2026-07-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://fountainchan.github.io/tech/49746.html</loc>
     
     <lastmod>2026-07-14</lastmod>
@@ -11,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://fountainchan.github.io/tech/40447.html</loc>
+    <loc>https://fountainchan.github.io/tech/58871.html</loc>
     
     <lastmod>2026-07-14</lastmod>
     
@@ -20,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://fountainchan.github.io/life/42815.html</loc>
+    <loc>https://fountainchan.github.io/tech/40447.html</loc>
     
     <lastmod>2026-07-14</lastmod>
     
@@ -39,15 +48,6 @@
   
   <url>
     <loc>https://fountainchan.github.io/recommends/98de12e.html</loc>
-    
-    <lastmod>2026-07-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fountainchan.github.io/tech/58871.html</loc>
     
     <lastmod>2026-07-13</lastmod>
     
