@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fountainchan.github.io/life/42815.html</loc>
+    
+    <lastmod>2026-07-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://fountainchan.github.io/recommends/98de12e.html</loc>
+    
+    <lastmod>2026-07-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://fountainchan.github.io/tech/28915.html</loc>
+    
+    <lastmod>2026-07-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://fountainchan.github.io/tech/49746.html</loc>
     
     <lastmod>2026-07-16</lastmod>
@@ -29,25 +56,7 @@
   </url>
   
   <url>
-    <loc>https://fountainchan.github.io/life/42815.html</loc>
-    
-    <lastmod>2026-07-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fountainchan.github.io/recommends/98de12e.html</loc>
-    
-    <lastmod>2026-07-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fountainchan.github.io/tech/28915.html</loc>
+    <loc>https://fountainchan.github.io/tech/57002.html</loc>
     
     <lastmod>2026-07-16</lastmod>
     
@@ -272,14 +281,35 @@
   </url>
   
   <url>
-    <loc>https://fountainchan.github.io/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://fountainchan.github.io/tags/AI/</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fountainchan.github.io/tags/AI/</loc>
+    <loc>https://fountainchan.github.io/tags/Vibe-Coding/</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fountainchan.github.io/tags/Agentic-Engineering/</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fountainchan.github.io/tags/AI%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fountainchan.github.io/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
