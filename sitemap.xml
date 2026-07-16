@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://fountainchan.github.io/tech/49746.html</loc>
-    
-    <lastmod>2026-07-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://fountainchan.github.io/tech/58871.html</loc>
     
     <lastmod>2026-07-16</lastmod>
@@ -74,6 +65,15 @@
   </url>
   
   <url>
+    <loc>https://fountainchan.github.io/tech/15620.html</loc>
+    
+    <lastmod>2026-07-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://fountainchan.github.io/tech/56639.html</loc>
     
     <lastmod>2026-07-16</lastmod>
@@ -84,6 +84,15 @@
   
   <url>
     <loc>https://fountainchan.github.io/tech/28915.html</loc>
+    
+    <lastmod>2026-07-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://fountainchan.github.io/tech/49746.html</loc>
     
     <lastmod>2026-07-16</lastmod>
     
@@ -371,7 +380,14 @@
   </url>
   
   <url>
-    <loc>https://fountainchan.github.io/tags/Loop/</loc>
+    <loc>https://fountainchan.github.io/tags/SaaS/</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fountainchan.github.io/tags/Claude-Code/</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -385,7 +401,7 @@
   </url>
   
   <url>
-    <loc>https://fountainchan.github.io/tags/SaaS/</loc>
+    <loc>https://fountainchan.github.io/tags/Loop/</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
