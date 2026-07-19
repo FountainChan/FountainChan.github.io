@@ -1,3 +1,3 @@
-var posts=["tech/49746.html","tech/55151.html","tech/57002.html","tech/58871.html","tech/40447.html","tech/28493.html","tech/56639.html","life/42815.html","tech/28915.html","recommends/98de12e.html","tech/1ef6d324.html","life/60749.html","tech/8931.html","tech/15620.html","tech/37655.html","tech/8258.html","tech/43297.html"];function toRandomPost(){
+var posts=["tech/49746.html","tech/55151.html","tech/57002.html","tech/58871.html","tech/40447.html","tech/28493.html","tech/56639.html","life/42815.html","tech/28915.html","recommends/98de12e.html","tech/1ef6d324.html","life/60749.html","tech/8931.html","tech/15620.html","tech/37655.html","tech/8258.html","tech/43297.html","tech/32350.html"];function toRandomPost(){
     window.location.href='/'+posts[Math.floor(Math.random() * posts.length)];
   };

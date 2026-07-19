@@ -6,7 +6,7 @@
   <link href="https://blog.vastnext.com/atom.xml" rel="self"/>
   
   <link href="https://blog.vastnext.com/"/>
-  <updated>2026-07-17T18:48:33.983Z</updated>
+  <updated>2026-07-19T16:36:09.859Z</updated>
   <id>https://blog.vastnext.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用AI做Canva模板卖给老外，真能月入过万？我拆了这条副业路</title>
+    <link href="https://blog.vastnext.com/tech/32350.html"/>
+    <id>https://blog.vastnext.com/tech/32350.html</id>
+    <published>2026-07-19T16:28:29.000Z</published>
+    <updated>2026-07-19T16:36:09.859Z</updated>
+    
+    <content type="html"><![CDATA[<p>网上聊副业的人很多，但大部分路子要么门槛高，要么要露脸，要么要囤货。</p><p>最近我发现了一条很有意思的路：<strong>用AI批量生成Canva模板，挂到Etsy上卖给老外</strong>。门槛极低，不用露脸，不用囤货，而且做一次能卖无数次。</p><p>我花时间研究了一圈，把整条链路拆清楚了。</p><h2 id="卖的不是图，是一个链接"><a href="#卖的不是图，是一个链接" class="headerlink" title="卖的不是图，是一个链接"></a>卖的不是图，是一个链接</h2><p>很多人第一反应是：卖设计图？</p><p>不是。你卖的是 <strong>Canva模板链接</strong>。买家付完钱，拿到一个PDF，里面一行字加一个链接。点一下，模板自动复制进他的Canva账号，他改改文字、换换图片就能直接用。</p><p>为什么非要卖模板而不是成品图？因为老外要的不是你那张图，而是”能自己改的版式”。一个健身教练买你的Instagram模板，是要一套能每周套上自己课程信息、换张照片就发出去的版式——成品图他改不了，模板才有用。</p><p>这个模式最妙的地方在于：<strong>买家觉得值，卖家零成本复制</strong>。双赢。</p><h2 id="算一笔账：利润率-80"><a href="#算一笔账：利润率-80" class="headerlink" title="算一笔账：利润率 80%+"></a>算一笔账：利润率 80%+</h2><p>实物生意的成本链条很长：进货、仓储、物流、包装、退换货。数字产品呢？你的成本只有两块——做第一套模板的那半天时间，加上每月几十块的Canva Pro会员。</p><p>之后每多卖一单，多出来的成本是零。</p><p>拿具体数字走一遍。你做了一套20张的Instagram模板包，定价27美金。Etsy抽6.5%交易费，加每单0.2美金上架费和支付手续费，一单到手约24-25美金。</p><p>这套模板花了一天做出来，之后每多卖一单，就是净赚24-25美金。</p><p><strong>做一次，卖无数次。</strong> 这就是数字产品的复利效应。</p><h2 id="谁会买？四类老外的真实画像"><a href="#谁会买？四类老外的真实画像" class="headerlink" title="谁会买？四类老外的真实画像"></a>谁会买？四类老外的真实画像</h2><p>我研究了一圈Etsy上的买家，发现主要有四类人：</p><p><strong>小企业主和个体老板</strong>：开咖啡馆、做小电商、跑本地服务的老板，天天要发社媒、做菜单、搞促销海报。请设计师一个月几千美金请不起，十几美金一套回去改改就能用的模板，性价比极高。</p><p><strong>自媒体博主和内容创作者</strong>：要持续往Instagram、Pinterest、TikTok上发内容，还得风格统一。自己一张张做太累，买一套模板套着改，一个月的内容当天批量产出。</p><p><strong>教练、咨询师、自由职业者</strong>：健身教练、婚礼策划、摄影师——他们要做客户手册、报价单、作品集。模板让他们花十几美金就显得很专业。</p><p><strong>找工作的普通人</strong>：简历模板、求职信模板，全球最稳的刚需。每天有海量的人在找工作，这个池子永远不会干。</p><h2 id="AI-怎么用？零基础三步走"><a href="#AI-怎么用？零基础三步走" class="headerlink" title="AI 怎么用？零基础三步走"></a>AI 怎么用？零基础三步走</h2><p>整条链路就三步，每一步AI都能帮上忙：</p><p><strong>第一步：AI帮你选方向</strong></p><p>你不需要懂老外的审美。用ChatGPT或DeepSeek，直接问：”2026年Etsy上什么Canva模板最好卖？给我10个细分方向。” AI会告诉你：婚礼邀请函、健身计划表、简历模板、小企业社媒包、食谱模板等等。</p><p><strong>第二步：AI帮你做模板</strong></p><p>Canva自带AI设计功能，输入一句话自动生成版式。比如”健身教练的Instagram帖子模板，风格简约有力”。不满意就改，10分钟一套初稿。</p><p>配图素材也可以用AI生成，这样能避免用Canva的付费元素——因为买家可能是免费版用户，用了付费元素他那里显示不全。</p><p><strong>第三步：AI帮你上架</strong></p><p>不懂英文？AI帮你写商品描述。”写一段Etsy的Canva模板商品介绍，50个Instagram帖子模板包，适合健身教练，英文。”</p><p>注册Etsy卖家账号，上传模板链接，设置定价（建议15-30美金），自动收款。整条链路就通了。</p><h2 id="真实案例：从75美金到3000美金"><a href="#真实案例：从75美金到3000美金" class="headerlink" title="真实案例：从75美金到3000美金"></a>真实案例：从75美金到3000美金</h2><p>一个做HR出身的网友，完全不擅长设计，2025年底开始做Canva模板。第一个月收入75美金——只有3单。但她没有放弃，用AI批量制作了50套不同风格的模板。</p><p>第4个月，月收入突破1200美金。第7个月，她的店铺有了一些稳定客户，月收入稳定在2000-3000美金区间。更关键的是，她每天只需要花1-2小时上新和维护。</p><p>做一次，卖无数次。睡后收入就是这么来的。</p><h2 id="三个容易踩的坑"><a href="#三个容易踩的坑" class="headerlink" title="三个容易踩的坑"></a>三个容易踩的坑</h2><p><strong>坑1：用了Canva付费素材</strong></p><p>你开了Pro会员可以免费用付费素材，但买家没开。他打开模板发现素材要额外花钱，直接差评。解决方案：做模板时只用免费素材，配图用AI生成。</p><p><strong>坑2：方向太宽泛</strong></p><p>“通用模板”已经没人买了。越细分越好卖：”健身教练Instagram模板”比”Instagram模板”好卖5倍。”护士简历模板”比”简历模板”好卖3倍。</p><p><strong>坑3：上来就想暴富</strong></p><p>第一个月可能就几单，第二个月几十美金。接受这个现实再入场。这套模式的魅力不在爆发，在持续积累——你每多做一套，就多一个自动收钱的小机器。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>门槛：一台电脑 + 一个AI工具 + 每月几十块Canva Pro</p><p>收入：从每月几十美金起步，6个月后做到2000-3000美金&#x2F;月的真实案例很多</p><p>核心：越细分越好卖，做多比做好重要</p><p>这不是一个”这个月做下个月发财”的项目。这是一个”你做10套，10套各自慢慢出单，6个月后叠加起来月入过万”的项目。</p><p>用AI把设计门槛打下来，把品类铺开，剩下的交给时间。</p>]]></content>
+    
+    
+    <summary type="html">用AI做Canva模板挂到Etsy卖给老外，门槛低、零物流、做一次卖无数次。拆解从选品、设计到上架的全流程，以及真实月入2000-3000美金的案例。</summary>
+    
+    
+    
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
+    
+    
+    <category term="AI" scheme="https://blog.vastnext.com/tags/AI/"/>
+    
+    <category term="独立开发" scheme="https://blog.vastnext.com/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="知识付费" scheme="https://blog.vastnext.com/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>Kimi K3实测：能力介于GPT-5.5和5.6之间，但五小时额度成最大短板</title>
