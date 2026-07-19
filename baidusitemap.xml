@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://blog.vastnext.com/tech/32350.html</loc>
+    <loc>https://blog.vastnext.com//life/tenderizing-meat/</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
-    <loc>https://blog.vastnext.com/life/60749.html</loc>
+    <loc>https://blog.vastnext.com/tech/32350.html</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
@@ -49,10 +49,6 @@
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
-    <loc>https://blog.vastnext.com/tech/43297.html</loc>
-    <lastmod>2026-07-17</lastmod>
-  </url>
-  <url>
     <loc>https://blog.vastnext.com/tech/1ef6d324.html</loc>
     <lastmod>2026-07-17</lastmod>
   </url>
@@ -70,6 +66,10 @@
   </url>
   <url>
     <loc>https://blog.vastnext.com/tech/58871.html</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.vastnext.com/tech/43297.html</loc>
     <lastmod>2026-07-17</lastmod>
   </url>
 </urlset> 
