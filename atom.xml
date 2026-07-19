@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>番茄说</title>
-  <icon>https://fountainchan.github.io/icon.png</icon>
+  <icon>https://blog.vastnext.com/icon.png</icon>
   <subtitle>恒德乃足，复归于朴</subtitle>
-  <link href="https://fountainchan.github.io/atom.xml" rel="self"/>
+  <link href="https://blog.vastnext.com/atom.xml" rel="self"/>
   
-  <link href="https://fountainchan.github.io/"/>
+  <link href="https://blog.vastnext.com/"/>
   <updated>2026-07-17T18:48:33.983Z</updated>
-  <id>https://fountainchan.github.io/</id>
+  <id>https://blog.vastnext.com/</id>
   
   <author>
     <name>灿烂番茄</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Kimi K3实测：能力介于GPT-5.5和5.6之间，但五小时额度成最大短板</title>
-    <link href="https://fountainchan.github.io/tech/43297.html"/>
-    <id>https://fountainchan.github.io/tech/43297.html</id>
+    <link href="https://blog.vastnext.com/tech/43297.html"/>
+    <id>https://blog.vastnext.com/tech/43297.html</id>
     <published>2026-07-17T03:53:38.000Z</published>
     <updated>2026-07-17T18:48:33.983Z</updated>
     
@@ -30,21 +30,21 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="开源项目" scheme="https://fountainchan.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="开源项目" scheme="https://blog.vastnext.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
-    <category term="AI" scheme="https://fountainchan.github.io/tags/AI/"/>
+    <category term="AI" scheme="https://blog.vastnext.com/tags/AI/"/>
     
-    <category term="AI编程" scheme="https://fountainchan.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
+    <category term="AI编程" scheme="https://blog.vastnext.com/tags/AI%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>倪海厦中医 AI 模型：一个开源项目把 2452 页中医经典蒸馏成 Agent Skill</title>
-    <link href="https://fountainchan.github.io/tech/8258.html"/>
-    <id>https://fountainchan.github.io/tech/8258.html</id>
+    <link href="https://blog.vastnext.com/tech/8258.html"/>
+    <id>https://blog.vastnext.com/tech/8258.html</id>
     <published>2026-07-17T03:01:00.000Z</published>
     <updated>2026-07-17T18:50:54.988Z</updated>
     
@@ -55,19 +55,19 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="开源项目" scheme="https://fountainchan.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="开源项目" scheme="https://blog.vastnext.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
-    <category term="AI" scheme="https://fountainchan.github.io/tags/AI/"/>
+    <category term="AI" scheme="https://blog.vastnext.com/tags/AI/"/>
     
   </entry>
   
   <entry>
     <title>一个人一个周末、一款浏览器游戏，月入7万这条路径比你想的靠谱</title>
-    <link href="https://fountainchan.github.io/tech/37655.html"/>
-    <id>https://fountainchan.github.io/tech/37655.html</id>
+    <link href="https://blog.vastnext.com/tech/37655.html"/>
+    <id>https://blog.vastnext.com/tech/37655.html</id>
     <published>2026-07-16T10:10:29.000Z</published>
     <updated>2026-07-17T18:50:54.985Z</updated>
     
@@ -78,23 +78,23 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="开源项目" scheme="https://fountainchan.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="开源项目" scheme="https://blog.vastnext.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
-    <category term="AI" scheme="https://fountainchan.github.io/tags/AI/"/>
+    <category term="AI" scheme="https://blog.vastnext.com/tags/AI/"/>
     
-    <category term="AI编程" scheme="https://fountainchan.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
+    <category term="AI编程" scheme="https://blog.vastnext.com/tags/AI%E7%BC%96%E7%A8%8B/"/>
     
-    <category term="知识付费" scheme="https://fountainchan.github.io/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/"/>
+    <category term="知识付费" scheme="https://blog.vastnext.com/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/"/>
     
   </entry>
   
   <entry>
     <title>一个周末+20美元，月入4.7万美元！他用Claude Code打造微SaaS爆款</title>
-    <link href="https://fountainchan.github.io/tech/15620.html"/>
-    <id>https://fountainchan.github.io/tech/15620.html</id>
+    <link href="https://blog.vastnext.com/tech/15620.html"/>
+    <id>https://blog.vastnext.com/tech/15620.html</id>
     <published>2026-07-16T08:30:00.000Z</published>
     <updated>2026-07-17T18:50:54.986Z</updated>
     
@@ -105,23 +105,23 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="AI编程" scheme="https://fountainchan.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
+    <category term="AI编程" scheme="https://blog.vastnext.com/tags/AI%E7%BC%96%E7%A8%8B/"/>
     
-    <category term="独立开发" scheme="https://fountainchan.github.io/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/"/>
+    <category term="独立开发" scheme="https://blog.vastnext.com/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/"/>
     
-    <category term="SaaS" scheme="https://fountainchan.github.io/tags/SaaS/"/>
+    <category term="SaaS" scheme="https://blog.vastnext.com/tags/SaaS/"/>
     
-    <category term="Claude Code" scheme="https://fountainchan.github.io/tags/Claude-Code/"/>
+    <category term="Claude Code" scheme="https://blog.vastnext.com/tags/Claude-Code/"/>
     
   </entry>
   
   <entry>
     <title>GitHub 开源工具-----骗子！</title>
-    <link href="https://fountainchan.github.io/tech/8931.html"/>
-    <id>https://fountainchan.github.io/tech/8931.html</id>
+    <link href="https://blog.vastnext.com/tech/8931.html"/>
+    <id>https://blog.vastnext.com/tech/8931.html</id>
     <published>2026-07-16T08:15:00.000Z</published>
     <updated>2026-07-17T18:50:54.978Z</updated>
     
@@ -132,23 +132,23 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="开源项目" scheme="https://fountainchan.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="开源项目" scheme="https://blog.vastnext.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
-    <category term="GitHub" scheme="https://fountainchan.github.io/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://blog.vastnext.com/tags/GitHub/"/>
     
-    <category term="Ruby" scheme="https://fountainchan.github.io/tags/Ruby/"/>
+    <category term="Ruby" scheme="https://blog.vastnext.com/tags/Ruby/"/>
     
-    <category term="测试" scheme="https://fountainchan.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
+    <category term="测试" scheme="https://blog.vastnext.com/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>GitHub 爆火免费 AI 投研神器！平替彭博终端，全开源无订阅费</title>
-    <link href="https://fountainchan.github.io/tech/55151.html"/>
-    <id>https://fountainchan.github.io/tech/55151.html</id>
+    <link href="https://blog.vastnext.com/tech/55151.html"/>
+    <id>https://blog.vastnext.com/tech/55151.html</id>
     <published>2026-07-16T08:10:00.000Z</published>
     <updated>2026-07-17T18:50:54.979Z</updated>
     
@@ -159,25 +159,25 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="开源项目" scheme="https://fountainchan.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="开源项目" scheme="https://blog.vastnext.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
-    <category term="GitHub" scheme="https://fountainchan.github.io/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://blog.vastnext.com/tags/GitHub/"/>
     
-    <category term="AI" scheme="https://fountainchan.github.io/tags/AI/"/>
+    <category term="AI" scheme="https://blog.vastnext.com/tags/AI/"/>
     
-    <category term="金融" scheme="https://fountainchan.github.io/tags/%E9%87%91%E8%9E%8D/"/>
+    <category term="金融" scheme="https://blog.vastnext.com/tags/%E9%87%91%E8%9E%8D/"/>
     
-    <category term="投资" scheme="https://fountainchan.github.io/tags/%E6%8A%95%E8%B5%84/"/>
+    <category term="投资" scheme="https://blog.vastnext.com/tags/%E6%8A%95%E8%B5%84/"/>
     
   </entry>
   
   <entry>
     <title>傻瓜式Loop教程来了：一行命令直接上手，GitHub狂揽4.5k Star</title>
-    <link href="https://fountainchan.github.io/tech/56639.html"/>
-    <id>https://fountainchan.github.io/tech/56639.html</id>
+    <link href="https://blog.vastnext.com/tech/56639.html"/>
+    <id>https://blog.vastnext.com/tech/56639.html</id>
     <published>2026-07-16T08:00:00.000Z</published>
     <updated>2026-07-17T18:50:54.989Z</updated>
     
@@ -188,25 +188,25 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="GitHub" scheme="https://fountainchan.github.io/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://blog.vastnext.com/tags/GitHub/"/>
     
-    <category term="AI" scheme="https://fountainchan.github.io/tags/AI/"/>
+    <category term="AI" scheme="https://blog.vastnext.com/tags/AI/"/>
     
-    <category term="ClaudeCode" scheme="https://fountainchan.github.io/tags/ClaudeCode/"/>
+    <category term="ClaudeCode" scheme="https://blog.vastnext.com/tags/ClaudeCode/"/>
     
-    <category term="OpenCode" scheme="https://fountainchan.github.io/tags/OpenCode/"/>
+    <category term="OpenCode" scheme="https://blog.vastnext.com/tags/OpenCode/"/>
     
-    <category term="Loop" scheme="https://fountainchan.github.io/tags/Loop/"/>
+    <category term="Loop" scheme="https://blog.vastnext.com/tags/Loop/"/>
     
   </entry>
   
   <entry>
     <title>Karpathy 官宣Vibe Coding时代落幕</title>
-    <link href="https://fountainchan.github.io/tech/57002.html"/>
-    <id>https://fountainchan.github.io/tech/57002.html</id>
+    <link href="https://blog.vastnext.com/tech/57002.html"/>
+    <id>https://blog.vastnext.com/tech/57002.html</id>
     <published>2026-07-16T07:45:00.000Z</published>
     <updated>2026-07-17T18:50:54.981Z</updated>
     
@@ -217,25 +217,25 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="AI" scheme="https://fountainchan.github.io/tags/AI/"/>
+    <category term="AI" scheme="https://blog.vastnext.com/tags/AI/"/>
     
-    <category term="Vibe Coding" scheme="https://fountainchan.github.io/tags/Vibe-Coding/"/>
+    <category term="Vibe Coding" scheme="https://blog.vastnext.com/tags/Vibe-Coding/"/>
     
-    <category term="Agentic Engineering" scheme="https://fountainchan.github.io/tags/Agentic-Engineering/"/>
+    <category term="Agentic Engineering" scheme="https://blog.vastnext.com/tags/Agentic-Engineering/"/>
     
-    <category term="ClaudeCode" scheme="https://fountainchan.github.io/tags/ClaudeCode/"/>
+    <category term="ClaudeCode" scheme="https://blog.vastnext.com/tags/ClaudeCode/"/>
     
-    <category term="AI编程" scheme="https://fountainchan.github.io/tags/AI%E7%BC%96%E7%A8%8B/"/>
+    <category term="AI编程" scheme="https://blog.vastnext.com/tags/AI%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>月入9W美元：失业吗喽 靠知识付费 + 产品矩阵跑通的小生意复盘</title>
-    <link href="https://fountainchan.github.io/tech/28915.html"/>
-    <id>https://fountainchan.github.io/tech/28915.html</id>
+    <link href="https://blog.vastnext.com/tech/28915.html"/>
+    <id>https://blog.vastnext.com/tech/28915.html</id>
     <published>2026-07-16T07:21:00.000Z</published>
     <updated>2026-07-17T18:50:54.991Z</updated>
     
@@ -246,25 +246,25 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="AI" scheme="https://fountainchan.github.io/tags/AI/"/>
+    <category term="AI" scheme="https://blog.vastnext.com/tags/AI/"/>
     
-    <category term="独立开发" scheme="https://fountainchan.github.io/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/"/>
+    <category term="独立开发" scheme="https://blog.vastnext.com/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/"/>
     
-    <category term="SaaS" scheme="https://fountainchan.github.io/tags/SaaS/"/>
+    <category term="SaaS" scheme="https://blog.vastnext.com/tags/SaaS/"/>
     
-    <category term="一人公司" scheme="https://fountainchan.github.io/tags/%E4%B8%80%E4%BA%BA%E5%85%AC%E5%8F%B8/"/>
+    <category term="一人公司" scheme="https://blog.vastnext.com/tags/%E4%B8%80%E4%BA%BA%E5%85%AC%E5%8F%B8/"/>
     
-    <category term="知识付费" scheme="https://fountainchan.github.io/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/"/>
+    <category term="知识付费" scheme="https://blog.vastnext.com/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/"/>
     
   </entry>
   
   <entry>
     <title>Floci — 把 AWS 搬到你电脑里跑的本地 Docker 服务模拟器</title>
-    <link href="https://fountainchan.github.io/tech/49746.html"/>
-    <id>https://fountainchan.github.io/tech/49746.html</id>
+    <link href="https://blog.vastnext.com/tech/49746.html"/>
+    <id>https://blog.vastnext.com/tech/49746.html</id>
     <published>2026-07-14T04:19:30.000Z</published>
     <updated>2026-07-17T18:50:54.977Z</updated>
     
@@ -275,25 +275,25 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="Github" scheme="https://fountainchan.github.io/tags/Github/"/>
+    <category term="Github" scheme="https://blog.vastnext.com/tags/Github/"/>
     
-    <category term="AWS" scheme="https://fountainchan.github.io/tags/AWS/"/>
+    <category term="AWS" scheme="https://blog.vastnext.com/tags/AWS/"/>
     
-    <category term="Docker" scheme="https://fountainchan.github.io/tags/Docker/"/>
+    <category term="Docker" scheme="https://blog.vastnext.com/tags/Docker/"/>
     
-    <category term="开源项目" scheme="https://fountainchan.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="开源项目" scheme="https://blog.vastnext.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
-    <category term="Floci" scheme="https://fountainchan.github.io/tags/Floci/"/>
+    <category term="Floci" scheme="https://blog.vastnext.com/tags/Floci/"/>
     
   </entry>
   
   <entry>
     <title>《阿卡夏记录》——Multi-agent 模拟驱动的 AI 无限故事引擎</title>
-    <link href="https://fountainchan.github.io/tech/40447.html"/>
-    <id>https://fountainchan.github.io/tech/40447.html</id>
+    <link href="https://blog.vastnext.com/tech/40447.html"/>
+    <id>https://blog.vastnext.com/tech/40447.html</id>
     <published>2026-07-14T03:52:34.000Z</published>
     <updated>2026-07-17T18:50:54.984Z</updated>
     
@@ -304,25 +304,25 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="ai" scheme="https://fountainchan.github.io/tags/ai/"/>
+    <category term="ai" scheme="https://blog.vastnext.com/tags/ai/"/>
     
-    <category term="Multi-agent" scheme="https://fountainchan.github.io/tags/Multi-agent/"/>
+    <category term="Multi-agent" scheme="https://blog.vastnext.com/tags/Multi-agent/"/>
     
-    <category term="AIGC" scheme="https://fountainchan.github.io/tags/AIGC/"/>
+    <category term="AIGC" scheme="https://blog.vastnext.com/tags/AIGC/"/>
     
-    <category term="互动小说" scheme="https://fountainchan.github.io/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/"/>
+    <category term="互动小说" scheme="https://blog.vastnext.com/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/"/>
     
-    <category term="bevy_ecs" scheme="https://fountainchan.github.io/tags/bevy-ecs/"/>
+    <category term="bevy_ecs" scheme="https://blog.vastnext.com/tags/bevy-ecs/"/>
     
   </entry>
   
   <entry>
     <title>德道经</title>
-    <link href="https://fountainchan.github.io/life/42815.html"/>
-    <id>https://fountainchan.github.io/life/42815.html</id>
+    <link href="https://blog.vastnext.com/life/42815.html"/>
+    <id>https://blog.vastnext.com/life/42815.html</id>
     <published>2026-04-11T17:45:11.000Z</published>
     <updated>2026-07-17T18:33:16.907Z</updated>
     
@@ -333,17 +333,17 @@
     
     
     
-    <category term="生活" scheme="https://fountainchan.github.io/categories/life/"/>
+    <category term="生活" scheme="https://blog.vastnext.com/categories/life/"/>
     
     
-    <category term="None" scheme="https://fountainchan.github.io/tags/None/"/>
+    <category term="None" scheme="https://blog.vastnext.com/tags/None/"/>
     
   </entry>
   
   <entry>
     <title>Superpowers 使用指南</title>
-    <link href="https://fountainchan.github.io/tech/58871.html"/>
-    <id>https://fountainchan.github.io/tech/58871.html</id>
+    <link href="https://blog.vastnext.com/tech/58871.html"/>
+    <id>https://blog.vastnext.com/tech/58871.html</id>
     <published>2026-02-23T18:48:26.000Z</published>
     <updated>2026-07-17T18:33:16.877Z</updated>
     
@@ -354,23 +354,23 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="ClaudeCode" scheme="https://fountainchan.github.io/tags/ClaudeCode/"/>
+    <category term="ClaudeCode" scheme="https://blog.vastnext.com/tags/ClaudeCode/"/>
     
-    <category term="ai" scheme="https://fountainchan.github.io/tags/ai/"/>
+    <category term="ai" scheme="https://blog.vastnext.com/tags/ai/"/>
     
-    <category term="mcp" scheme="https://fountainchan.github.io/tags/mcp/"/>
+    <category term="mcp" scheme="https://blog.vastnext.com/tags/mcp/"/>
     
-    <category term="OpenCode" scheme="https://fountainchan.github.io/tags/OpenCode/"/>
+    <category term="OpenCode" scheme="https://blog.vastnext.com/tags/OpenCode/"/>
     
   </entry>
   
   <entry>
     <title>肉的嬾滑法</title>
-    <link href="https://fountainchan.github.io/life/60749.html"/>
-    <id>https://fountainchan.github.io/life/60749.html</id>
+    <link href="https://blog.vastnext.com/life/60749.html"/>
+    <id>https://blog.vastnext.com/life/60749.html</id>
     <published>2025-10-10T04:51:29.000Z</published>
     <updated>2026-07-17T18:33:16.924Z</updated>
     
@@ -381,19 +381,19 @@
     
     
     
-    <category term="生活" scheme="https://fountainchan.github.io/categories/life/"/>
+    <category term="生活" scheme="https://blog.vastnext.com/categories/life/"/>
     
     
-    <category term="嫩肉" scheme="https://fountainchan.github.io/tags/%E5%AB%A9%E8%82%89/"/>
+    <category term="嫩肉" scheme="https://blog.vastnext.com/tags/%E5%AB%A9%E8%82%89/"/>
     
-    <category term="肉的处理" scheme="https://fountainchan.github.io/tags/%E8%82%89%E7%9A%84%E5%A4%84%E7%90%86/"/>
+    <category term="肉的处理" scheme="https://blog.vastnext.com/tags/%E8%82%89%E7%9A%84%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>一份以LLM为中心的应用AI学习路径</title>
-    <link href="https://fountainchan.github.io/tech/28493.html"/>
-    <id>https://fountainchan.github.io/tech/28493.html</id>
+    <link href="https://blog.vastnext.com/tech/28493.html"/>
+    <id>https://blog.vastnext.com/tech/28493.html</id>
     <published>2025-10-05T23:39:48.000Z</published>
     <updated>2026-07-17T18:33:16.893Z</updated>
     
@@ -404,19 +404,19 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="ai" scheme="https://fountainchan.github.io/tags/ai/"/>
+    <category term="ai" scheme="https://blog.vastnext.com/tags/ai/"/>
     
-    <category term="mcp" scheme="https://fountainchan.github.io/tags/mcp/"/>
+    <category term="mcp" scheme="https://blog.vastnext.com/tags/mcp/"/>
     
   </entry>
   
   <entry>
     <title>高性价比VPS推广之CloudCone</title>
-    <link href="https://fountainchan.github.io/recommends/98de12e.html"/>
-    <id>https://fountainchan.github.io/recommends/98de12e.html</id>
+    <link href="https://blog.vastnext.com/recommends/98de12e.html"/>
+    <id>https://blog.vastnext.com/recommends/98de12e.html</id>
     <published>2025-09-29T13:08:41.000Z</published>
     <updated>2026-07-17T18:33:16.913Z</updated>
     
@@ -427,17 +427,17 @@
     
     
     
-    <category term="推荐" scheme="https://fountainchan.github.io/categories/recommends/"/>
+    <category term="推荐" scheme="https://blog.vastnext.com/categories/recommends/"/>
     
     
-    <category term="VPS" scheme="https://fountainchan.github.io/tags/VPS/"/>
+    <category term="VPS" scheme="https://blog.vastnext.com/tags/VPS/"/>
     
   </entry>
   
   <entry>
     <title>没有服务器，如何用github创建自己的Hexo的博客</title>
-    <link href="https://fountainchan.github.io/tech/1ef6d324.html"/>
-    <id>https://fountainchan.github.io/tech/1ef6d324.html</id>
+    <link href="https://blog.vastnext.com/tech/1ef6d324.html"/>
+    <id>https://blog.vastnext.com/tech/1ef6d324.html</id>
     <published>2025-09-26T18:53:29.000Z</published>
     <updated>2026-07-17T18:33:16.917Z</updated>
     
@@ -448,14 +448,14 @@
     
     
     
-    <category term="技术" scheme="https://fountainchan.github.io/categories/tech/"/>
+    <category term="技术" scheme="https://blog.vastnext.com/categories/tech/"/>
     
     
-    <category term="Github" scheme="https://fountainchan.github.io/tags/Github/"/>
+    <category term="Github" scheme="https://blog.vastnext.com/tags/Github/"/>
     
-    <category term="Hexo" scheme="https://fountainchan.github.io/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://blog.vastnext.com/tags/Hexo/"/>
     
-    <category term="node" scheme="https://fountainchan.github.io/tags/node/"/>
+    <category term="node" scheme="https://blog.vastnext.com/tags/node/"/>
     
   </entry>
   

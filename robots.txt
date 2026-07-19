@@ -8,4 +8,4 @@ Allow: /
 Allow: /atom.xml
 Allow: /sitemap.xml
 Allow: /baidusitemap.xml
-Sitemap: https://fountainchan.github.io/sitemap.xml
+Sitemap: https://blog.vastnext.com/sitemap.xml
