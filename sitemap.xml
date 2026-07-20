@@ -425,13 +425,6 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tags/None/</loc>
-    <lastmod>2026-07-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.vastnext.com/tags/%E4%B8%80%E4%BA%BA%E5%85%AC%E5%8F%B8/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -440,6 +433,13 @@
   
   <url>
     <loc>https://blog.vastnext.com/tags/VPS/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/None/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -497,14 +497,14 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/categories/life/</loc>
+    <loc>https://blog.vastnext.com/categories/recommends/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/categories/recommends/</loc>
+    <loc>https://blog.vastnext.com/categories/life/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
