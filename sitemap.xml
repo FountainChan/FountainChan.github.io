@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.vastnext.com/life/how-to-tenderize-meat/</loc>
+    
+    <lastmod>2026-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.vastnext.com/tech/how-to-optimize-hexo-seo/</loc>
     
     <lastmod>2026-07-20</lastmod>
@@ -21,15 +30,6 @@
   
   <url>
     <loc>https://blog.vastnext.com/categories/index.html</loc>
-    
-    <lastmod>2026-07-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/life/how-to-tenderize-meat/</loc>
     
     <lastmod>2026-07-19</lastmod>
     
