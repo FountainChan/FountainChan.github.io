@@ -287,20 +287,6 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tags/Ruby/</loc>
-    <lastmod>2026-07-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tags/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2026-07-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.vastnext.com/tags/AI/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -316,13 +302,6 @@
   
   <url>
     <loc>https://blog.vastnext.com/tags/%E6%8A%95%E8%B5%84/</loc>
-    <lastmod>2026-07-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tags/AI%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -350,6 +329,27 @@
   </url>
   
   <url>
+    <loc>https://blog.vastnext.com/tags/AI%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/Ruby/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.vastnext.com/tags/ai/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -365,13 +365,6 @@
   
   <url>
     <loc>https://blog.vastnext.com/tags/OpenCode/</loc>
-    <lastmod>2026-07-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -400,6 +393,13 @@
   
   <url>
     <loc>https://blog.vastnext.com/tags/bevy-ecs/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
