@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://blog.vastnext.com//tech/how-to-add-comments-and-message-board-to-hexo-blog/</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.vastnext.com/tech/1ef6d324.html</loc>
     <lastmod>2026-07-20</lastmod>
   </url>
   <url>
@@ -63,10 +67,6 @@
   <url>
     <loc>https://blog.vastnext.com/tech/49746.html</loc>
     <lastmod>2026-07-19</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.vastnext.com/tech/1ef6d324.html</loc>
-    <lastmod>2026-07-17</lastmod>
   </url>
   <url>
     <loc>https://blog.vastnext.com/life/42815.html</loc>
