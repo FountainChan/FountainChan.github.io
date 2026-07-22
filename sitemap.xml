@@ -2,33 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.vastnext.com/privacy/index.html</loc>
-    
-    <lastmod>2026-07-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/resource/index.html</loc>
-    
-    <lastmod>2026-07-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tags/index.html</loc>
-    
-    <lastmod>2026-07-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.vastnext.com/json/music.json</loc>
     
     <lastmod>2026-07-22</lastmod>
@@ -38,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/music/index.html</loc>
+    <loc>https://blog.vastnext.com/music/</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -47,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/life/42815.html</loc>
+    <loc>https://blog.vastnext.com/privacy/</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -56,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tech/57883.html</loc>
+    <loc>https://blog.vastnext.com/resource/</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -65,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tech/28915.html</loc>
+    <loc>https://blog.vastnext.com/tags/</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -119,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/categories/index.html</loc>
+    <loc>https://blog.vastnext.com/about/</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -128,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/about/index.html</loc>
+    <loc>https://blog.vastnext.com/categories/</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -191,15 +164,6 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tech/58871.html</loc>
-    
-    <lastmod>2026-07-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.vastnext.com/tech/61990.html</loc>
     
     <lastmod>2026-07-22</lastmod>
@@ -209,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tech/40447.html</loc>
+    <loc>https://blog.vastnext.com/tech/58871.html</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -237,6 +201,15 @@
   
   <url>
     <loc>https://blog.vastnext.com/tech/28493.html</loc>
+    
+    <lastmod>2026-07-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/40447.html</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -282,6 +255,33 @@
   
   <url>
     <loc>https://blog.vastnext.com/life/how-to-tenderize-meat/</loc>
+    
+    <lastmod>2026-07-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/life/42815.html</loc>
+    
+    <lastmod>2026-07-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/57883.html</loc>
+    
+    <lastmod>2026-07-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/28915.html</loc>
     
     <lastmod>2026-07-22</lastmod>
     
@@ -446,34 +446,6 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tags/Multi-agent/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tags/AIGC/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tags/bevy-ecs/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.vastnext.com/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -496,6 +468,34 @@
   
   <url>
     <loc>https://blog.vastnext.com/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/Multi-agent/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/AIGC/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/bevy-ecs/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
