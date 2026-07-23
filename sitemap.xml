@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/music/</loc>
+    <loc>https://blog.vastnext.com/json/music.json</loc>
     
     <lastmod>2026-07-23</lastmod>
     
@@ -38,7 +38,52 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/json/music.json</loc>
+    <loc>https://blog.vastnext.com/categories/</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/about/</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/life/42815.html</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/57883.html</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/28915.html</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/how-to-add-comments-and-message-board-to-hexo-blog/</loc>
     
     <lastmod>2026-07-23</lastmod>
     
@@ -57,15 +102,6 @@
   
   <url>
     <loc>https://blog.vastnext.com/tech/1ef6d324.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tech/how-to-add-comments-and-message-board-to-hexo-blog/</loc>
     
     <lastmod>2026-07-23</lastmod>
     
@@ -102,24 +138,6 @@
   
   <url>
     <loc>https://blog.vastnext.com/tech/how-to-optimize-hexo-seo/</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/about/</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/categories/</loc>
     
     <lastmod>2026-07-23</lastmod>
     
@@ -191,51 +209,6 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/life/42815.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tech/57883.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tech/28915.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tech/58871.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tech/61990.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.vastnext.com/tech/40447.html</loc>
     
     <lastmod>2026-07-23</lastmod>
@@ -255,6 +228,24 @@
   
   <url>
     <loc>https://blog.vastnext.com/tech/15620.html</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/58871.html</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/61990.html</loc>
     
     <lastmod>2026-07-23</lastmod>
     
@@ -617,20 +608,6 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tags/VPS/</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tags/node/</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.vastnext.com/tags/Twikoo/</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -646,6 +623,20 @@
   
   <url>
     <loc>https://blog.vastnext.com/tags/Netlify/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/VPS/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tags/node/</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
