@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.vastnext.com/json/music.json</loc>
+    <loc>https://blog.vastnext.com/tags/</loc>
     
     <lastmod>2026-07-23</lastmod>
     
@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/resource/</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.vastnext.com/privacy/</loc>
     
     <lastmod>2026-07-23</lastmod>
@@ -38,7 +29,61 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/tags/</loc>
+    <loc>https://blog.vastnext.com/json/music.json</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/resource/</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/categories/</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/62688.html</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/life/how-to-tenderize-meat/</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/life/42815.html</loc>
+    
+    <lastmod>2026-07-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.vastnext.com/tech/57883.html</loc>
     
     <lastmod>2026-07-23</lastmod>
     
@@ -110,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://blog.vastnext.com/categories/</loc>
+    <loc>https://blog.vastnext.com/tech/65164.html</loc>
     
     <lastmod>2026-07-23</lastmod>
     
@@ -147,51 +192,6 @@
   
   <url>
     <loc>https://blog.vastnext.com/tech/56639.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tech/62688.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/life/how-to-tenderize-meat/</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/life/42815.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tech/57883.html</loc>
-    
-    <lastmod>2026-07-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vastnext.com/tech/65164.html</loc>
     
     <lastmod>2026-07-23</lastmod>
     
