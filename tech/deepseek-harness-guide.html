@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>DeepSeek Harness 入门：从本地启动到插件架构 | 番茄说</title><meta name="keywords" content="DeepSeek Harness,deepseek harness 安装,dsh web,DeepSeek Agent,DeepSeek Harness 插件"><meta name="author" content="灿烂的番茄"><meta name="copyright" content="灿烂的番茄"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="DeepSeek Harness 入门：从本地启动到插件架构"><meta name="application-name" content="DeepSeek Harness 入门：从本地启动到插件架构"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="DeepSeek Harness 入门：从本地启动到插件架构"><meta property="og:url" content="https://blog.vastnext.com/tech/deepseek-harness-guide.html"><meta property="og:site_name" content="番茄说"><meta property="og:description" content="DeepSeek Harness 是 DeepSeek 官方开源的插件化 Agent 运行框架。本文依据官方中文文档梳理 dsh web 的启动与模型配置、工作区使用流程、Cordis 插件架构及开发者预览版的安全边界，并说明它和聊天模型的区别。"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://blog.vastnext.com/images/40907/01.png"><meta property="article:author" content="灿烂的番茄"><meta property="article:tag" content="AI编程,Claude Code,OpenCode,Loop,独立开发,SaaS,知识付费,开源项目,GitHub,LLM,MCP,AIGC,Vibe Coding,Hexo,SEO,一人公司"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blog.vastnext.com/images/40907/01.png"><meta name="description" content="DeepSeek Harness 是 DeepSeek 官方开源的插件化 Agent 运行框架。本文依据官方中文文档梳理 dsh web 的启动与模型配置、工作区使用流程、Cordis 插件架构及开发者预览版的安全边界，并说明它和聊天模型的区别。"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.vastnext.com/tech/deepseek-harness-guide.html"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="yt9JI1SXRCzSYu6NoHDeXMMdBr0zIkPJMU29CykhA1U"/><meta name="baidu-site-verification"/><meta name="msvalidate.01" content="FC1D0DECB415E5163334BF3237806DA1"/><meta name="yandex-verification" content="d4af64124b12b179"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://blog.vastnext.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "技术",
+      "item": "https://blog.vastnext.com/categories/tech/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "DeepSeek Harness 入门：从本地启动到插件架构",
+      "item": "https://blog.vastnext.com/tech/deepseek-harness-guide.html"
+    }
+  ]
+}
+</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-7M6PV8JJDB"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7M6PV8JJDB');
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4015e1b334514a04959c7e5803bacfea&quot;}"></script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: undefined,
+  friends_vue_info: undefined,
+  navMusic: false,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 灿烂的番茄","link":"链接: ","source":"来源: 番茄说","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '番茄说',
+  title: 'DeepSeek Harness 入门：从本地启动到插件架构',
+  postAI: '',
+  pageFillDescription: '先从本地 Web UI 走通, 一切皆插件到底意味着什么, 安全说明比安装命令更重要入门从本地启动到插件架构是官方开源的插件化运行框架本文依据官方中文文档梳理的启动与模型配置工作区使用流程插件架构及开发者预览版的安全边界并说明它和聊天模型的区别灿烂的番茄灿烂的番茄关键词日报里突然出现了若只看名字很容易以为发布了一个新模型可官方仓库把它定义为开源的即用来装配模型工具会话和用户界面的运行框架命令行程序叫模型负责生成下一步建议则负责把建议放进能够读文件调用工具请求审批和继续对话的工作流程换模型不等于换反过来安装也不等于已经取得模型的额度配图来自官方仓库的文档不是本站本机运行截图官方目前明确写着并提醒可能出现破坏兼容性的更新下面的安装命令和界面操作均来自项目文档我没有在这台博客环境里运行也没有拿自己的项目测试插件的稳定性这种区别看似啰唆却能避免把官方说明支持写成本站已经验证先从本地走通中文给出的最短启动方法是在已安装的环境中运行命令默认在启动本地本机运行会尝试打开浏览器加可只起服务不自动弹出浏览器通过运行时文档说程序仅打印访问地址端口转发归客户端或编辑器处理是本机回环地址不能因为它默认只在本机访问就把未加固的开发预览版直接开放到公网要对外发布须先看项目的公开部署说明不要随手将端口映射到若不愿通过运行当前包另给出从源码构建的方法适合打算检查源码或开发插件的人这两种方式的版本未必一致发布包有自己的版本克隆仓库则拿到当时分支上的代码在快速迭代的预览期照着新文档操作旧包而找不到入口先确认版本与文档对应关系比盲目更换更有效使用前一步构建出的产物不能跳过再把缺文件归咎于模型启动后仍不能马上让干活按官方指南先到设置模型填写密钥并保存模型路由随即生效不需要重启服务使用其他模型供应商或兼容端点则需对照模型配置指南是敏感信息别塞进示例仓库截图聊天记录或提交到设置好模型后点击选择工作区添加并选中要操作的项目目录未选择工作区时会话输入框不可用启动所在的目录会成为默认文件系统位置这一点值得提前留意不宜从存有密钥或个人资料的上级目录随手启动工作区选好后官方示例任务是概述仓库并指出主要包我也会先选这类只需读取的任务观察它读了哪些文件给出了哪些引用再逐步尝试改文件和运行测试根据项目文档可以读取与编辑工作区执行命令委派工作维护计划操作是否先请求审批取决于当前权限策略看到一次审批弹窗也不能推断其他操作都必然弹窗测试新工具时应使用可丢弃的仓库和不含真实凭证的环境一切皆插件到底意味着什么我觉得这个项目更值得看的地方并不是聊天框而是架构文档对扩展位置的划分基于模型适配器工具注册表会话日志和循环都以插件参与共享上下文插件贡献服务事件及可撤销的注册效果想接一个模型供应商可以在注册适配器想让模型用一个新工具可在注册想改变文件访问策略则看要在请求工具或回合边界插入行为则使用相应事件这里的插件有明确接入点不是把任意脚本丢进目录就会自动变成安全的功能运行配置另有概念官方列出的应用入口包括和等同一套能力可以由不同装配给浏览器无界面运行或外部集成使用普通读者先用就够了开发者要理解某项行为究竟从哪里来可沿插件配置服务注册和会话事件逐层追踪相较于只会聊天的模型的价值在于把工具使用与运行状态组织起来相较于一份简单的提示词它多出了进程文件系统权限和配置的工程责任这也解释了为什么它与本站写过的规则技能和不是同一层东西技能侧重告诉现有如何完成特定任务负责提供运行任务的环境模型适配工具和会话至于后两篇所述的技能能否在中直接安装行为是否一致必须按的插件与技能兼容文档逐项验证不能因为都叫就推断互通安全说明比安装命令更重要官方文件写得很直接项目处于实验性开发预览阶段尚未完成安全审计也不应被当作可直接投入生产的安全产品它可能执行模型生成的代码和命令加载第三方插件并访问当前环境允许的网络进程文件和凭证模型输出错误恶意输入配置失误或不可信插件都可能造成文件损坏凭证泄露和其他意外沙盒审批与权限控制能降低风险却不能保证隔离尤其不能保护那些本来就允许访问的资源如果只想了解它不必一开始就在长期使用的工作目录安装所有插件我会准备一个没有密钥的样例仓库限制系统账户权限并保留备份先让它只读概述目录检查模型路由和审批再决定是否开放编辑或命令执行第三方插件应分别审查来源它注册了哪些工具和事件是否向网络发送数据以及更新后权限是否变化开发者预览版更新很快配置和插件兼容性也可能改变遇到教程失效时最好先对照当前仓库文档与版本而非相信页面上的免配置一键运行日后要做真正的效果评测还需要固定同一个仓库与任务记录模型版本插件集合权限策略执行命令修改的文件和测试结果比较成功率和返工量没有这些记录写比某个强或能自主完成复杂项目不过是把的愿景改写为本站结论我现在能确认的是安装入口工作区步骤架构和项目方明确承认的安全限制想实际采用它还得在自己的隔离环境里验资料官方仓库与中文入门架构文档安全说明',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-15 23:13:33',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="番茄说" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://ahhfs.com/" title="资库"><img class="back-menu-item-icon" src="/img/ahhfs.svg" alt="资库"/><span class="back-menu-item-text">资库</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">番茄说</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于我</span></a></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/img/wx_qrcode.jpg" target="_blank"><img class="post-qr-code-img" alt="微信" src="/img/wx_qrcode.jpg"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zfb_qrcode.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/img/zfb_qrcode.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem; color: rgb(43, 82, 44);">AI<sup>32</sup></a><a href="/tags/AIGC/" style="font-size: 1.05rem; color: rgb(35, 59, 95);">AIGC<sup>3</sup></a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" style="font-size: 1.05rem; color: rgb(100, 8, 129);">AI编程<sup>9</sup></a><a href="/tags/AWS/" style="font-size: 1.05rem; color: rgb(70, 88, 150);">AWS<sup>1</sup></a><a href="/tags/Agent/" style="font-size: 1.05rem; color: rgb(158, 171, 159);">Agent<sup>8</sup></a><a href="/tags/Agentic-Engineering/" style="font-size: 1.05rem; color: rgb(166, 84, 109);">Agentic Engineering<sup>1</sup></a><a href="/tags/Claude-Code/" style="font-size: 1.05rem; color: rgb(73, 71, 2);">Claude Code<sup>2</sup></a><a href="/tags/ClaudeCode/" style="font-size: 1.05rem; color: rgb(163, 55, 84);">ClaudeCode<sup>7</sup></a><a href="/tags/Docker/" style="font-size: 1.05rem; color: rgb(91, 110, 77);">Docker<sup>2</sup></a><a href="/tags/Floci/" style="font-size: 1.05rem; color: rgb(128, 197, 191);">Floci<sup>1</sup></a><a href="/tags/GitHub/" style="font-size: 1.05rem; color: rgb(106, 144, 117);">GitHub<sup>16</sup></a><a href="/tags/Github/" style="font-size: 1.05rem; color: rgb(111, 196, 187);">Github<sup>2</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem; color: rgb(32, 137, 141);">Hexo<sup>4</sup></a><a href="/tags/Loop/" style="font-size: 1.05rem; color: rgb(49, 51, 49);">Loop<sup>2</sup></a><a href="/tags/Loop-Engineering/" style="font-size: 1.05rem; color: rgb(66, 185, 143);">Loop Engineering<sup>1</sup></a><a href="/tags/Multi-agent/" style="font-size: 1.05rem; color: rgb(14, 41, 12);">Multi-agent<sup>1</sup></a><a href="/tags/OpenCode/" style="font-size: 1.05rem; color: rgb(19, 88, 22);">OpenCode<sup>2</sup></a><a href="/tags/Ruby/" style="font-size: 1.05rem; color: rgb(33, 88, 129);">Ruby<sup>1</sup></a><a href="/tags/SEO/" style="font-size: 1.05rem; color: rgb(47, 194, 104);">SEO<sup>9</sup></a><a href="/tags/SaaS/" style="font-size: 1.05rem; color: rgb(93, 0, 198);">SaaS<sup>7</sup></a><a href="/tags/Sitemap/" style="font-size: 1.05rem; color: rgb(17, 17, 144);">Sitemap<sup>1</sup></a><a href="/tags/Vibe-Coding/" style="font-size: 1.05rem; color: rgb(97, 44, 98);">Vibe Coding<sup>1</sup></a><a href="/tags/ai/" style="font-size: 1.05rem; color: rgb(150, 123, 44);">ai<sup>3</sup></a><a href="/tags/bevy-ecs/" style="font-size: 1.05rem; color: rgb(144, 168, 95);">bevy_ecs<sup>1</sup></a><a href="/tags/mcp/" style="font-size: 1.05rem; color: rgb(36, 93, 84);">mcp<sup>2</sup></a><a href="/tags/%E4%B8%80%E4%BA%BA%E5%85%AC%E5%8F%B8/" style="font-size: 1.05rem; color: rgb(17, 143, 146);">一人公司<sup>5</sup></a><a href="/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/" style="font-size: 1.05rem; color: rgb(114, 8, 170);">互动小说<sup>1</sup></a><a href="/tags/%E5%87%BA%E6%B5%B7%E7%8B%AC%E7%AB%8B%E7%AB%99/" style="font-size: 1.05rem; color: rgb(60, 67, 173);">出海独立站<sup>6</sup></a><a href="/tags/%E5%88%9B%E4%B8%9A%E6%A1%88%E4%BE%8B/" style="font-size: 1.05rem; color: rgb(87, 28, 170);">创业案例<sup>16</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 1.05rem; color: rgb(151, 8, 13);">博客搭建<sup>3</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 1.05rem; color: rgb(93, 187, 163);">开源项目<sup>15</sup></a><a href="/tags/%E6%8A%95%E8%B5%84/" style="font-size: 1.05rem; color: rgb(29, 160, 64);">投资<sup>3</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem; color: rgb(192, 21, 60);">测试<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 1.05rem; color: rgb(119, 8, 3);">游戏<sup>4</sup></a><a href="/tags/%E6%B8%B8%E6%88%8FMod/" style="font-size: 1.05rem; color: rgb(120, 26, 149);">游戏Mod<sup>1</sup></a><a href="/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/" style="font-size: 1.05rem; color: rgb(87, 101, 95);">独立开发<sup>17</sup></a><a href="/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/" style="font-size: 1.05rem; color: rgb(69, 32, 132);">知识付费<sup>7</sup></a><a href="/tags/%E7%BD%91%E7%AB%99%E5%8F%98%E7%8E%B0/" style="font-size: 1.05rem; color: rgb(20, 134, 101);">网站变现<sup>4</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" style="font-size: 1.05rem; color: rgb(102, 105, 32);">软件安全<sup>1</sup></a><a href="/tags/%E9%87%91%E8%9E%8D/" style="font-size: 1.05rem; color: rgb(107, 134, 36);">金融<sup>7</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/10/"><span class="card-archive-list-date">十月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/09/"><span class="card-archive-list-date">九月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">36</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/07/"><span class="card-archive-list-date">七月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">32</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/04/"><span class="card-archive-list-date">四月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/02/"><span class="card-archive-list-date">二月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/tech/" itemprop="url">技术</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/GitHub/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>GitHub</span></a><a class="article-meta__tags" href="/tags/AI/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>AI</span></a><a class="article-meta__tags" href="/tags/Agent/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Agent</span></a><a class="article-meta__tags" href="/tags/AI%E7%BC%96%E7%A8%8B/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>AI编程</span></a></span></div></div><h1 class="post-title" itemprop="name headline">DeepSeek Harness 入门：从本地启动到插件架构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-10-15T15:02:00.000Z" title="发表于 2026-10-15 23:02:00">2026-10-15</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-10-15T15:13:33.119Z" title="更新于 2026-10-15 23:13:33">2026-10-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">2.2k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="DeepSeek Harness 入门：从本地启动到插件架构"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为广州"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>广州</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/tech/deepseek-harness-guide.html#post-comment" tabindex="-1"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://img.vastnext.com/images/40907/01.png" alt="DeepSeek Harness 入门：从本地启动到插件架构"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.vastnext.com/tech/deepseek-harness-guide.html"><header><a class="post-meta-categories" href="/categories/tech/" itemprop="url">技术</a><a href="/tags/GitHub/" tabindex="-1" itemprop="url">GitHub</a><a href="/tags/AI/" tabindex="-1" itemprop="url">AI</a><a href="/tags/Agent/" tabindex="-1" itemprop="url">Agent</a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" tabindex="-1" itemprop="url">AI编程</a><h2 class="sr-only" id="CrawlerTitle" itemprop="name headline">DeepSeek Harness 入门：从本地启动到插件架构</h2><span itemprop="author" itemscope itemtype="http://schema.org/Person">灿烂的番茄</span><time itemprop="dateCreated datePublished" datetime="2026-10-15T15:02:00.000Z" title="发表于 2026-10-15 23:02:00">2026-10-15</time><time itemprop="dateCreated datePublished" datetime="2026-10-15T15:13:33.119Z" title="更新于 2026-10-15 23:13:33">2026-10-15</time></header><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DeepSeek Harness 入门：从本地启动到插件架构",
+  "description": "DeepSeek Harness 是 DeepSeek 官方开源的插件化 Agent 运行框架。本文依据官方中文文档梳理 dsh web 的启动与模型配置、工作区使用流程、Cordis 插件架构及开发者预览版的安全边界，并说明它和聊天模型的区别。",
+  "mainEntityOfPage": "https://blog.vastnext.com/tech/deepseek-harness-guide.html",
+  "image": "https://img.vastnext.com/images/40907/01.png",
+  "datePublished": "2026-10-15T23:02:00+08:00",
+  "author": {"@type": "Person", "name": "灿烂的番茄"},
+  "publisher": {"@type": "Person", "name": "灿烂的番茄"},
+  "inLanguage": "zh-CN"
+}
+</script>
+
+<p>关键词日报里突然出现了“deepseek harness”。若只看名字，很容易以为 DeepSeek 发布了一个新模型；可 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek 官方仓库</a> 把它定义为开源的 <strong>Agent harness</strong>，即用来装配模型、工具、会话和用户界面的运行框架，命令行程序叫 <code>dsh</code>。模型负责生成下一步建议，harness 则负责把建议放进能够读文件、调用工具、请求审批和继续对话的工作流程。换模型不等于换 harness，反过来，安装 harness 也不等于已经取得模型的 API 额度。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/40907/01.png" alt="DeepSeek Harness 官方中文文档中的模型设置页面，展示 API 密钥输入与模型提供商选项"></p>
+<p><em>配图来自 DeepSeek Harness 官方仓库的 Web UI 文档，不是本站本机运行截图。</em></p>
+<p>官方 README 目前明确写着 <strong>developer preview</strong>，并提醒可能出现破坏兼容性的更新。下面的安装命令和界面操作均来自项目文档，我没有在这台博客环境里运行 DeepSeek Harness，也没有拿自己的项目测试插件的稳定性。这种区别看似啰唆，却能避免把“官方说明支持”写成“本站已经验证”。</p>
+<h2 id="先从本地-Web-UI-走通"><a href="#先从本地-Web-UI-走通" class="headerlink" title="先从本地 Web UI 走通" aria-label="先从本地 Web UI 走通"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>先从本地 Web UI 走通</h2><p><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/README.zh.md">中文 README</a> 给出的最短启动方法，是在已安装 Node.js 的环境中运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @deepseek-ai/dsh web</span><br></pre></td></tr></table></figure>
+
+<p>命令默认在 <code>http://127.0.0.1:3080</code> 启动本地 Web UI，本机运行会尝试打开浏览器；加 <code>--no-open</code> 可只起服务，不自动弹出浏览器。通过 SSH 运行时，文档说程序仅打印访问地址，端口转发归 SSH 客户端或编辑器处理。<code>127.0.0.1</code> 是本机回环地址，不能因为它默认只在本机访问，就把未加固的开发预览版直接开放到公网。要对外发布须先看项目的 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/public-deployments.md">公开部署说明</a>，不要随手将端口映射到 <code>0.0.0.0</code>。</p>
+<p>若不愿通过 <code>npx</code> 运行当前 npm 包，README 另给出从源码构建的方法，适合打算检查源码或开发插件的人：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/deepseek-ai/deepseek-harness.git</span><br><span class="line"><span class="built_in">cd</span> deepseek-harness</span><br><span class="line">pnpm install</span><br><span class="line">pnpm run build</span><br><span class="line">pnpm dsh web</span><br></pre></td></tr></table></figure>
+
+<p>这两种方式的版本未必一致：npm 发布包有自己的版本，克隆仓库则拿到当时分支上的代码；在快速迭代的预览期，照着新文档操作旧包而找不到入口，先确认版本与文档对应关系，比盲目更换 API Key 更有效。<code>pnpm dsh web</code> 使用前一步构建出的产物，不能跳过 <code>pnpm run build</code> 再把缺文件归咎于模型。</p>
+<p>Web UI 启动后仍不能马上让 Agent 干活。按 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/index.zh.md">官方 Web UI 指南</a>，先到“设置 → 模型”填写 DeepSeek API 密钥并保存，模型路由随即生效，不需要重启服务；使用其他模型供应商或 OpenAI 兼容端点，则需对照 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/providers.zh.md">模型配置指南</a>。API Key 是敏感信息，别塞进示例仓库、截图、聊天记录或提交到 Git。设置好模型后，点击“选择工作区”，添加并选中要操作的项目目录；未选择工作区时会话输入框不可用。<code>dsh</code> 启动所在的目录会成为默认文件系统位置，这一点值得提前留意：不宜从存有密钥或个人资料的上级目录随手启动。</p>
+<p>工作区选好后，官方示例任务是“概述仓库并指出主要包”。我也会先选这类<strong>只需读取</strong>的任务，观察它读了哪些文件、给出了哪些引用，再逐步尝试改文件和运行测试。根据项目文档，Agent 可以读取与编辑工作区、执行命令、委派工作、维护计划；操作是否先请求审批，取决于当前权限策略。看到一次审批弹窗，也不能推断其他操作都必然弹窗，测试新工具时应使用可丢弃的仓库和不含真实凭证的环境。</p>
+<h2 id="“一切皆插件”到底意味着什么"><a href="#“一切皆插件”到底意味着什么" class="headerlink" title="“一切皆插件”到底意味着什么" aria-label="“一切皆插件”到底意味着什么"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>“一切皆插件”到底意味着什么</h2><p>我觉得这个项目更值得看的地方并不是聊天框，而是 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md">架构文档</a> 对扩展位置的划分。DeepSeek Harness 基于 Cordis，模型适配器、工具注册表、会话日志和 Agent 循环都以插件参与共享上下文；插件贡献服务、事件及可撤销的注册效果。想接一个模型供应商，可以在 <code>ctx.llm</code> 注册适配器；想让模型用一个新工具，可在 <code>ctx.tools</code> 注册；想改变文件访问策略则看 <code>ctx.fs</code>，要在请求、工具或回合边界插入行为则使用相应事件。这里的“插件”有明确接入点，不是把任意脚本丢进目录就会自动变成安全的 Agent 功能。</p>
+<p>运行配置另有 <strong>profile</strong> 概念。官方列出的 Node 应用入口包括 <code>web</code>、<code>headless</code>、<code>sdk</code>、<code>sdk-minimal</code> 和 <code>acp</code> 等；同一套能力可以由不同 profile 装配给浏览器、无界面运行或外部集成使用。普通读者先用 <code>web</code> 就够了，开发者要理解某项行为究竟从哪里来，可沿 profile、插件配置、服务注册和会话事件逐层追踪。相较于只会聊天的模型，harness 的价值在于把工具使用与运行状态组织起来；相较于一份简单的“Agent 提示词”，它多出了进程、文件系统、权限和配置的工程责任。</p>
+<p>这也解释了为什么它与本站写过的 <a href="/tech/ponytail-claude-guide.html">Ponytail 规则技能</a> 和 <a href="/tech/cloudflare-security-audit-skill-guide.html">Cloudflare Security Audit Skill</a> 不是同一层东西。技能侧重告诉现有 Agent 如何完成特定任务；Harness 负责提供运行任务的环境、模型适配、工具和会话。至于后两篇所述的技能能否在 <code>dsh</code> 中直接安装、行为是否一致，必须按 DeepSeek Harness 的插件与技能兼容文档逐项验证，不能因为都叫 Agent 就推断互通。</p>
+<h2 id="安全说明比安装命令更重要"><a href="#安全说明比安装命令更重要" class="headerlink" title="安全说明比安装命令更重要" aria-label="安全说明比安装命令更重要"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>安全说明比安装命令更重要</h2><p><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/SAFETY.md">官方 SAFETY 文件</a> 写得很直接：项目处于实验性开发预览阶段，<strong>尚未完成安全审计，也不应被当作可直接投入生产的安全产品</strong>。它可能执行模型生成的代码和命令、加载第三方插件，并访问当前环境允许的网络、进程、文件和凭证。模型输出错误、恶意输入、配置失误或不可信插件都可能造成文件损坏、凭证泄露和其他意外。沙盒、审批与权限控制能降低风险，却不能保证隔离，尤其不能保护那些本来就允许 Agent 访问的资源。</p>
+<p>如果只想了解它，不必一开始就在长期使用的工作目录安装所有插件。我会准备一个没有密钥的样例仓库，限制系统账户权限并保留备份；先让它只读概述目录，检查模型路由和审批，再决定是否开放编辑或命令执行。第三方插件应分别审查来源、它注册了哪些工具和事件、是否向网络发送数据，以及更新后权限是否变化。开发者预览版更新很快，配置和插件兼容性也可能改变，遇到教程失效时最好先对照当前仓库文档与版本，而非相信页面上的“免配置一键运行”。</p>
+<p>日后要做真正的效果评测，还需要固定同一个仓库与任务，记录模型、版本、插件集合、权限策略、执行命令、修改的文件和测试结果，比较成功率和返工量。没有这些记录，写“比某个 Agent 强”或“能自主完成复杂项目”，不过是把 README 的愿景改写为本站结论。我现在能确认的是安装入口、工作区步骤、架构和项目方明确承认的安全限制；想实际采用它，还得在自己的隔离环境里验。</p>
+<p>资料：<a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/README.zh.md">官方仓库与中文 README</a> · <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/index.zh.md">Web UI 入门</a> · <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md">架构文档</a> · <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/blob/master/SAFETY.md">安全说明</a></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">灿烂的番茄</div><div class="post-copyright__author_desc">AI编程实战 · 创业案例复盘 · 开源项目评测 · Hexo博客搭建手记</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.vastnext.com/tech/deepseek-harness-guide.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.vastnext.com/tech/deepseek-harness-guide.html')">DeepSeek Harness 入门：从本地启动到插件架构</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.vastnext.com/tech/deepseek-harness-guide.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=DeepSeek Harness 入门：从本地启动到插件架构&amp;url=https://blog.vastnext.com/tech/deepseek-harness-guide.html&amp;pic=/images/40907/01.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.vastnext.com" target="_blank">番茄说</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/tech/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>技术<span class="categoryesPageCount">51</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/GitHub/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>GitHub<span class="tagsPageCount">16</span></a><a class="post-meta__box__tags" href="/tags/AI/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>AI<span class="tagsPageCount">32</span></a><a class="post-meta__box__tags" href="/tags/Agent/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Agent<span class="tagsPageCount">8</span></a><a class="post-meta__box__tags" href="/tags/AI%E7%BC%96%E7%A8%8B/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>AI编程<span class="tagsPageCount">9</span></a></div></div><div class="post_share"><div class="social-share" data-image="/images/40907/01.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div></div><!-- 辅助函数：图片加载失败时隐藏图片，让黑底透出--><!-- 优先使用 frontmatter 自定义 series_prev/series_next（系列教程专用）--><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/tech/cloudflare-security-audit-skill-guide.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/16871/cover_001.jpg" onerror="this.onerror=null;this.style.display='none'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Cloudflare Security Audit Skill 怎么用：先看它如何验证发现</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/tech/24984.html" title="这个开源项目，可以让AI在你睡觉时一直干活"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/24984/01.jpg" alt="这个开源项目，可以让AI在你睡觉时一直干活" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-07-24</div><div class="title">这个开源项目，可以让AI在你睡觉时一直干活</div></div></a></div><div><a href="/tech/cloudflare-security-audit-skill-guide.html" title="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/16871/cover_001.jpg" alt="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-14</div><div class="title">Cloudflare Security Audit Skill 怎么用：先看它如何验证发现</div></div></a></div><div><a href="/tech/reverse-engineer-anything-guide.html" title="Reverse Engineer Anything 怎么用：从安装到验证证据"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/59945/01.png" alt="Reverse Engineer Anything 怎么用：从安装到验证证据" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-14</div><div class="title">Reverse Engineer Anything 怎么用：从安装到验证证据</div></div></a></div><div><a href="/tech/41027.html" title="一周多狂揽1000+Star！金融Agent开始进入真实工作流"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/41027/01.jpg" alt="一周多狂揽1000+Star！金融Agent开始进入真实工作流" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-07-29</div><div class="title">一周多狂揽1000+Star！金融Agent开始进入真实工作流</div></div></a></div><div><a href="/tech/6279.html" title="Loop Engineering 完整解读：从 Prompt 到自主循环的 AI 工程范式革命"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/6279/00_001.jpg" alt="Loop Engineering 完整解读：从 Prompt 到自主循环的 AI 工程范式革命" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-07-21</div><div class="title">Loop Engineering 完整解读：从 Prompt 到自主循环的 AI 工程范式革命</div></div></a></div><div><a href="/tech/53125.html" title="11.2K Star！又一神级 Agent 工作台：让多 Agent 共用同一工作空间"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/53125/01.jpg" alt="11.2K Star！又一神级 Agent 工作台：让多 Agent 共用同一工作空间" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-09-09</div><div class="title">11.2K Star！又一神级 Agent 工作台：让多 Agent 共用同一工作空间</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy/" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">专注分享<b style="color:#fff">出海SEO教程</b>与<b style="color:#fff">独立站赚钱</b>实战，从关键词挖掘、谷歌排名优化到工具站变现，手把手教你用AI做网站赚美元。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这里还有<b style="color:#fff">AI编程</b>、<b style="color:#fff">Agent实战</b>、<b style="color:#fff">一人公司创业案例</b>与开源项目评测，帮你用最小成本跑通自己的线上生意。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><h1 class="author-info__name">灿烂的番茄</h1><div class="author-info__desc">AI编程实战 · 创业案例复盘 · 开源项目评测 · Hexo博客搭建手记</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/FountainChan" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/372204786" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E4%BB%8E%E6%9C%AC%E5%9C%B0-Web-UI-%E8%B5%B0%E9%80%9A"><span class="toc-number">1.</span> <span class="toc-text">先从本地 Web UI 走通</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E4%B8%80%E5%88%87%E7%9A%86%E6%8F%92%E4%BB%B6%E2%80%9D%E5%88%B0%E5%BA%95%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">“一切皆插件”到底意味着什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E8%AF%B4%E6%98%8E%E6%AF%94%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E6%9B%B4%E9%87%8D%E8%A6%81"><span class="toc-number">3.</span> <span class="toc-text">安全说明比安装命令更重要</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/tech/deepseek-harness-guide.html" title="DeepSeek Harness 入门：从本地启动到插件架构"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/40907/01.png" onerror="this.onerror=null;this.src='/img/404.png'" alt="DeepSeek Harness 入门：从本地启动到插件架构"/></a><div class="content"><a class="title" href="/tech/deepseek-harness-guide.html" title="DeepSeek Harness 入门：从本地启动到插件架构">DeepSeek Harness 入门：从本地启动到插件架构</a><time datetime="2026-10-15T15:02:00.000Z" title="发表于 2026-10-15 23:02:00">2026-10-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/cloudflare-security-audit-skill-guide.html" title="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/16871/cover_001.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现"/></a><div class="content"><a class="title" href="/tech/cloudflare-security-audit-skill-guide.html" title="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现">Cloudflare Security Audit Skill 怎么用：先看它如何验证发现</a><time datetime="2026-10-13T19:36:00.000Z" title="发表于 2026-10-14 03:36:00">2026-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/ponytail-claude-guide.html" title="Ponytail Claude 教程：少写代码不等于自动省钱"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/22689/cover_001.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Ponytail Claude 教程：少写代码不等于自动省钱"/></a><div class="content"><a class="title" href="/tech/ponytail-claude-guide.html" title="Ponytail Claude 教程：少写代码不等于自动省钱">Ponytail Claude 教程：少写代码不等于自动省钱</a><time datetime="2026-10-13T19:35:00.000Z" title="发表于 2026-10-14 03:35:00">2026-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/artcraft-photocraft-download-safety.html" title="ArtCraft 和 PhotoCraft 下载前先核对来源"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/25073/cover_001.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="ArtCraft 和 PhotoCraft 下载前先核对来源"/></a><div class="content"><a class="title" href="/tech/artcraft-photocraft-download-safety.html" title="ArtCraft 和 PhotoCraft 下载前先核对来源">ArtCraft 和 PhotoCraft 下载前先核对来源</a><time datetime="2026-10-13T19:34:00.000Z" title="发表于 2026-10-14 03:34:00">2026-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/claude-code-mods-guide.html" title="Claude Code Mods 入门：先分清插件与 Hook"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/42267/01.png" onerror="this.onerror=null;this.src='/img/404.png'" alt="Claude Code Mods 入门：先分清插件与 Hook"/></a><div class="content"><a class="title" href="/tech/claude-code-mods-guide.html" title="Claude Code Mods 入门：先分清插件与 Hook">Claude Code Mods 入门：先分清插件与 Hook</a><time datetime="2026-10-13T19:33:00.000Z" title="发表于 2026-10-14 03:33:00">2026-10-14</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2008 - 2026 By <a class="footer-bar-link" href="/" title="灿烂的番茄" target="_blank">灿烂的番茄</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" href="/resource/" title="技术栈">技术栈</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">130</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://ahhfs.com/" title="资库"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/ahhfs.svg" alt="资库"/><span class="back-menu-item-text">资库</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于我</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem; color: rgb(46, 194, 44);">AI<sup>32</sup></a><a href="/tags/AIGC/" style="font-size: 0.88rem; color: rgb(20, 57, 50);">AIGC<sup>3</sup></a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" style="font-size: 0.88rem; color: rgb(94, 109, 0);">AI编程<sup>9</sup></a><a href="/tags/AWS/" style="font-size: 0.88rem; color: rgb(35, 136, 23);">AWS<sup>1</sup></a><a href="/tags/Agent/" style="font-size: 0.88rem; color: rgb(141, 141, 61);">Agent<sup>8</sup></a><a href="/tags/Agentic-Engineering/" style="font-size: 0.88rem; color: rgb(26, 77, 125);">Agentic Engineering<sup>1</sup></a><a href="/tags/Claude-Code/" style="font-size: 0.88rem; color: rgb(182, 53, 134);">Claude Code<sup>2</sup></a><a href="/tags/ClaudeCode/" style="font-size: 0.88rem; color: rgb(197, 9, 53);">ClaudeCode<sup>7</sup></a><a href="/tags/Docker/" style="font-size: 0.88rem; color: rgb(196, 200, 192);">Docker<sup>2</sup></a><a href="/tags/Floci/" style="font-size: 0.88rem; color: rgb(48, 44, 35);">Floci<sup>1</sup></a><a href="/tags/GitHub/" style="font-size: 0.88rem; color: rgb(196, 189, 169);">GitHub<sup>16</sup></a><a href="/tags/Github/" style="font-size: 0.88rem; color: rgb(178, 12, 171);">Github<sup>2</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem; color: rgb(52, 55, 168);">Hexo<sup>4</sup></a><a href="/tags/Loop/" style="font-size: 0.88rem; color: rgb(77, 2, 80);">Loop<sup>2</sup></a><a href="/tags/Loop-Engineering/" style="font-size: 0.88rem; color: rgb(178, 199, 174);">Loop Engineering<sup>1</sup></a><a href="/tags/Multi-agent/" style="font-size: 0.88rem; color: rgb(93, 120, 117);">Multi-agent<sup>1</sup></a><a href="/tags/OpenCode/" style="font-size: 0.88rem; color: rgb(79, 17, 43);">OpenCode<sup>2</sup></a><a href="/tags/Ruby/" style="font-size: 0.88rem; color: rgb(33, 103, 134);">Ruby<sup>1</sup></a><a href="/tags/SEO/" style="font-size: 0.88rem; color: rgb(143, 40, 100);">SEO<sup>9</sup></a><a href="/tags/SaaS/" style="font-size: 0.88rem; color: rgb(56, 126, 127);">SaaS<sup>7</sup></a><a href="/tags/Sitemap/" style="font-size: 0.88rem; color: rgb(19, 30, 161);">Sitemap<sup>1</sup></a><a href="/tags/Vibe-Coding/" style="font-size: 0.88rem; color: rgb(156, 156, 28);">Vibe Coding<sup>1</sup></a><a href="/tags/ai/" style="font-size: 0.88rem; color: rgb(19, 152, 123);">ai<sup>3</sup></a><a href="/tags/bevy-ecs/" style="font-size: 0.88rem; color: rgb(29, 192, 139);">bevy_ecs<sup>1</sup></a><a href="/tags/mcp/" style="font-size: 0.88rem; color: rgb(199, 115, 49);">mcp<sup>2</sup></a><a href="/tags/%E4%B8%80%E4%BA%BA%E5%85%AC%E5%8F%B8/" style="font-size: 0.88rem; color: rgb(160, 111, 79);">一人公司<sup>5</sup></a><a href="/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/" style="font-size: 0.88rem; color: rgb(50, 136, 14);">互动小说<sup>1</sup></a><a href="/tags/%E5%87%BA%E6%B5%B7%E7%8B%AC%E7%AB%8B%E7%AB%99/" style="font-size: 0.88rem; color: rgb(7, 10, 44);">出海独立站<sup>6</sup></a><a href="/tags/%E5%88%9B%E4%B8%9A%E6%A1%88%E4%BE%8B/" style="font-size: 0.88rem; color: rgb(101, 82, 105);">创业案例<sup>16</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 0.88rem; color: rgb(170, 11, 103);">博客搭建<sup>3</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 0.88rem; color: rgb(106, 53, 161);">开源项目<sup>15</sup></a><a href="/tags/%E6%8A%95%E8%B5%84/" style="font-size: 0.88rem; color: rgb(9, 18, 116);">投资<sup>3</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem; color: rgb(179, 197, 135);">测试<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 0.88rem; color: rgb(159, 23, 92);">游戏<sup>4</sup></a><a href="/tags/%E6%B8%B8%E6%88%8FMod/" style="font-size: 0.88rem; color: rgb(151, 24, 125);">游戏Mod<sup>1</sup></a><a href="/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/" style="font-size: 0.88rem; color: rgb(47, 63, 50);">独立开发<sup>17</sup></a><a href="/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/" style="font-size: 0.88rem; color: rgb(114, 29, 97);">知识付费<sup>7</sup></a><a href="/tags/%E7%BD%91%E7%AB%99%E5%8F%98%E7%8E%B0/" style="font-size: 0.88rem; color: rgb(171, 137, 81);">网站变现<sup>4</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" style="font-size: 0.88rem; color: rgb(183, 112, 9);">软件安全<sup>1</sup></a><a href="/tags/%E9%87%91%E8%9E%8D/" style="font-size: 0.88rem; color: rgb(109, 58, 1);">金融<sup>7</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2008 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 灿烂的番茄 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@10.2.4/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
