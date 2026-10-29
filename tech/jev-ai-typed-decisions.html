@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Jev AI 是什么？类型化决策能保证什么 | 番茄说</title><meta name="keywords" content="Jev AI,Jev AI model,TypeSafe Jev,Jev 类型化决策,Jev 和 LLM 区别,Jev AI agent"><meta name="author" content="灿烂的番茄"><meta name="copyright" content="灿烂的番茄"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Jev AI 是什么？类型化决策能保证什么"><meta name="application-name" content="Jev AI 是什么？类型化决策能保证什么"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Jev AI 是什么？类型化决策能保证什么"><meta property="og:url" content="https://blog.vastnext.com/tech/jev-ai-typed-decisions.html"><meta property="og:site_name" content="番茄说"><meta property="og:description" content="Jev AI 是 TypeSafe 面向软件决策推出的 System One 模型。本文根据官方发布文和文档解释 state、Choice、Score、Noul 与概率输出，区分类型安全和判断正确，说明它适合放在 Agent 工作流的什么位置，以及接入前应怎样验证错误率、延迟和人工兜底。"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://blog.vastnext.com/images/27811/01.png"><meta property="article:author" content="灿烂的番茄"><meta property="article:tag" content="AI编程,Claude Code,OpenCode,Loop,独立开发,SaaS,知识付费,开源项目,GitHub,LLM,MCP,AIGC,Vibe Coding,Hexo,SEO,一人公司"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blog.vastnext.com/images/27811/01.png"><meta name="description" content="Jev AI 是 TypeSafe 面向软件决策推出的 System One 模型。本文根据官方发布文和文档解释 state、Choice、Score、Noul 与概率输出，区分类型安全和判断正确，说明它适合放在 Agent 工作流的什么位置，以及接入前应怎样验证错误率、延迟和人工兜底。"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.vastnext.com/tech/jev-ai-typed-decisions.html"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="yt9JI1SXRCzSYu6NoHDeXMMdBr0zIkPJMU29CykhA1U"/><meta name="baidu-site-verification"/><meta name="msvalidate.01" content="FC1D0DECB415E5163334BF3237806DA1"/><meta name="yandex-verification" content="d4af64124b12b179"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://blog.vastnext.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "技术",
+      "item": "https://blog.vastnext.com/categories/tech/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Jev AI 是什么？类型化决策能保证什么",
+      "item": "https://blog.vastnext.com/tech/jev-ai-typed-decisions.html"
+    }
+  ]
+}
+</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-7M6PV8JJDB"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7M6PV8JJDB');
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4015e1b334514a04959c7e5803bacfea&quot;}"></script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: undefined,
+  friends_vue_info: undefined,
+  navMusic: false,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 灿烂的番茄","link":"链接: ","source":"来源: 番茄说","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '番茄说',
+  title: 'Jev AI 是什么？类型化决策能保证什么',
+  postAI: '',
+  pageFillDescription: '输入状态输出受约束的判断, 类型安全不等于判断正确, 在 Agent 工作流中放在哪里, 接入前先做一份错误清单让模型判断一封邮件该交给哪个部门业务代码实际需要的可能只有一个类别但聊天模型往往先写一段解释再把类别放进程序还要解析和校验的选择收窄输出范围按官方文档的定义程序把状态和带类型的问题交给取得可以直接使用的结构化结果它属于所称的模型不生成自由文本读者若搜是什么可以先把它理解为嵌在软件流程中的决策模型而非另一个用来长篇聊天的助手输入状态输出受约束的判断这里的是供模型判断的上下文可以包含文本等非结构化材料则规定要问什么答案允许是什么形态官方文档主张每个问题只问一件边界清楚的事复杂决策拆成多个问题再在业务代码中组合结果这样的设计把一部分责任交还给程序员哪些因素要看怎样加权什么时候停止不能都含糊地塞进一句请综合判断截至年月日官方列出的三个基本问题类型如下不同类型的返回字段不同不能把所有结果都有当成统一接口约定问题类型用途官方列出的返回值从给定选项中选择按指定评分标准评价状态判断一项陈述是否为真取值为到同一请求可以混合不同问题类型文档说明它们针对同一个独立并行地求值这意味着第二个问题不能偷偷依赖第一个问题刚刚得出的答案真有依赖关系应由调用方先接收结果再组织下一轮请求是否独立得看问题的实际含义不能只看它们被写成了两个字段类型安全不等于判断正确发布文在介绍类型安全时使用了很强的不产生幻觉措辞我觉得这里必须把保证的对象说明白候选项预先限定为技术支持账单和人工复核受约束的输出能避免凭空产生一个接口不认识的第四种部门但是在这三个合法选项之中选错仍是需要评估的语义错误一个结果能被程序顺利消费与这个结果符合业务事实毕竟是两件事配图来自官方发布文的小节表达厂商对类型约束的说明不是本站独立测试结果概率和置信信息可以帮助决定是否行动却也需要验证若某一批结果自报较高把握实际错误率仍然很高业务就不能照单全收官方发布文强调校准概率这是模型的设计目标与厂商说明上线前仍应拿自己的任务数据核对尤其是退款权限变更和医疗等高代价判断即使结果类型完全正确也不应因为能得到一个数字就自动执行格式过关只过了一关在工作流中放在哪里以邮件分流为例本文的工程设想是先取得邮件和必要的业务上下文让模型判断类别再由代码检查是否允许自动分流材料缺失或判断不稳时交给人工对外发信退款等动作另走权限校验和审批这里没有调用也没有经过实测的阈值示例只说明职责怎样划分不能把一个看起来整齐的流程冒充已经跑通的接入教程场景可考虑的决策问题仍由业务系统承担的责任工单分流从既定队列中选一个校验队列权限处理信息不足的工单搜索结果筛选按给定相关性标准打分保留来源评价误删重要结果的损失工具选择在允许的候选工具中选择验证参数访问权限与执行后果若任务本来就是写文章生成代码给出解释自由文本输出仍有用处不能因为决策模型速度的宣传就把整个生成环节删掉比较适合讨论的是流程中的局部判断本站的入门解释了运行框架如何组织模型工具和会话属于其中可考虑的决策能力本文并未验证它与该框架的直接兼容性也没有声称已经存在可安装的对应插件接入前先做一份错误清单真正试用时应从官方进入按当前文档确认账户模型标识和而非照抄来源不明的接口示例我会先准备一组有人工标注的样本保留含混邮件缺字段混合意图和恶意指令等难例把输出是否合法判断是否正确需要人工处理的比例分开记录类型错误变少固然有价值漏掉高风险工单的代价却可能更大这种差别需要在验收指标里体现延迟也应算端到端的网络排队重试和业务校验都在调用链上厂商演示里的速度并不能直接换算成自家服务的响应时间发布文含有性能对比但本文不把它转述成独立基准更不据此保证能便宜多少快多少先固定样本版本和调用条件再与现有实现比较才能知道节省的是解析工作还是整个流程的成本从这个角度看值得关注的地方很具体把输出限制在软件需要的范围内让程序更容易组合模型判断至于程序是否应该相信那个判断仍然要靠数据和责任边界来回答模型少说几句话不等于系统可以少做验证资料官方发布文与类型表官方核对日期',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-30 03:28:22',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="番茄说" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://ahhfs.com/" title="资库"><img class="back-menu-item-icon" src="/img/ahhfs.svg" alt="资库"/><span class="back-menu-item-text">资库</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">番茄说</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于我</span></a></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/img/wx_qrcode.jpg" target="_blank"><img class="post-qr-code-img" alt="微信" src="/img/wx_qrcode.jpg"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zfb_qrcode.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/img/zfb_qrcode.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem; color: rgb(27, 173, 166);">AI<sup>40</sup></a><a href="/tags/AIGC/" style="font-size: 1.05rem; color: rgb(70, 31, 172);">AIGC<sup>3</sup></a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" style="font-size: 1.05rem; color: rgb(112, 169, 146);">AI编程<sup>12</sup></a><a href="/tags/AWS/" style="font-size: 1.05rem; color: rgb(116, 25, 99);">AWS<sup>1</sup></a><a href="/tags/Agent/" style="font-size: 1.05rem; color: rgb(186, 74, 52);">Agent<sup>15</sup></a><a href="/tags/Agentic-Engineering/" style="font-size: 1.05rem; color: rgb(108, 128, 25);">Agentic Engineering<sup>1</sup></a><a href="/tags/Claude-Code/" style="font-size: 1.05rem; color: rgb(154, 185, 191);">Claude Code<sup>2</sup></a><a href="/tags/ClaudeCode/" style="font-size: 1.05rem; color: rgb(131, 96, 154);">ClaudeCode<sup>10</sup></a><a href="/tags/Cloudflare/" style="font-size: 1.05rem; color: rgb(196, 5, 54);">Cloudflare<sup>2</sup></a><a href="/tags/Docker/" style="font-size: 1.05rem; color: rgb(53, 160, 58);">Docker<sup>2</sup></a><a href="/tags/Floci/" style="font-size: 1.05rem; color: rgb(161, 80, 11);">Floci<sup>1</sup></a><a href="/tags/GitHub/" style="font-size: 1.05rem; color: rgb(179, 174, 139);">GitHub<sup>20</sup></a><a href="/tags/Github/" style="font-size: 1.05rem; color: rgb(28, 75, 113);">Github<sup>2</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem; color: rgb(46, 33, 64);">Hexo<sup>4</sup></a><a href="/tags/Loop-Engineering/" style="font-size: 1.05rem; color: rgb(26, 139, 9);">Loop Engineering<sup>1</sup></a><a href="/tags/Multi-agent/" style="font-size: 1.05rem; color: rgb(195, 50, 27);">Multi-agent<sup>1</sup></a><a href="/tags/OpenCode/" style="font-size: 1.05rem; color: rgb(151, 174, 144);">OpenCode<sup>3</sup></a><a href="/tags/Ruby/" style="font-size: 1.05rem; color: rgb(142, 80, 81);">Ruby<sup>1</sup></a><a href="/tags/SEO/" style="font-size: 1.05rem; color: rgb(75, 124, 22);">SEO<sup>9</sup></a><a href="/tags/SaaS/" style="font-size: 1.05rem; color: rgb(158, 138, 86);">SaaS<sup>7</sup></a><a href="/tags/Sitemap/" style="font-size: 1.05rem; color: rgb(107, 22, 133);">Sitemap<sup>1</sup></a><a href="/tags/Vibe-Coding/" style="font-size: 1.05rem; color: rgb(132, 63, 145);">Vibe Coding<sup>1</sup></a><a href="/tags/ai/" style="font-size: 1.05rem; color: rgb(15, 159, 44);">ai<sup>3</sup></a><a href="/tags/mcp/" style="font-size: 1.05rem; color: rgb(169, 152, 105);">mcp<sup>2</sup></a><a href="/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/" style="font-size: 1.05rem; color: rgb(164, 42, 6);">互动小说<sup>1</sup></a><a href="/tags/%E5%88%9B%E4%B8%9A%E6%A1%88%E4%BE%8B/" style="font-size: 1.05rem; color: rgb(75, 59, 24);">创业案例<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 1.05rem; color: rgb(97, 167, 122);">前端开发<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 1.05rem; color: rgb(59, 136, 51);">博客搭建<sup>3</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/" style="font-size: 1.05rem; color: rgb(176, 188, 63);">开源工具<sup>1</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 1.05rem; color: rgb(175, 154, 147);">开源项目<sup>15</sup></a><a href="/tags/%E6%8A%95%E8%B5%84/" style="font-size: 1.05rem; color: rgb(139, 43, 15);">投资<sup>3</sup></a><a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 1.05rem; color: rgb(153, 143, 89);">架构设计<sup>2</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem; color: rgb(53, 178, 27);">测试<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8FMod/" style="font-size: 1.05rem; color: rgb(19, 13, 13);">游戏Mod<sup>1</sup></a><a href="/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/" style="font-size: 1.05rem; color: rgb(142, 49, 200);">独立开发<sup>20</sup></a><a href="/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/" style="font-size: 1.05rem; color: rgb(7, 61, 118);">知识付费<sup>7</sup></a><a href="/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/" style="font-size: 1.05rem; color: rgb(49, 72, 10);">视频剪辑<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" style="font-size: 1.05rem; color: rgb(139, 8, 172);">软件安全<sup>2</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 1.05rem; color: rgb(80, 67, 32);">软件推荐<sup>1</sup></a><a href="/tags/%E9%87%91%E8%9E%8D/" style="font-size: 1.05rem; color: rgb(121, 79, 184);">金融<sup>7</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/10/"><span class="card-archive-list-date">十月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">16</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/09/"><span class="card-archive-list-date">九月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">36</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/07/"><span class="card-archive-list-date">七月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">32</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/04/"><span class="card-archive-list-date">四月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/02/"><span class="card-archive-list-date">二月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/tech/" itemprop="url">技术</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/AI/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>AI</span></a><a class="article-meta__tags" href="/tags/Agent/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Agent</span></a><a class="article-meta__tags" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>架构设计</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Jev AI 是什么？类型化决策能保证什么</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-10-29T19:16:00.000Z" title="发表于 2026-10-30 03:16:00">2026-10-30</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-10-29T19:28:22.698Z" title="更新于 2026-10-30 03:28:22">2026-10-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">1.7k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="Jev AI 是什么？类型化决策能保证什么"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为广州"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>广州</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/tech/jev-ai-typed-decisions.html#post-comment" tabindex="-1"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://img.vastnext.com/images/27811/01.png" alt="Jev AI 是什么？类型化决策能保证什么"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.vastnext.com/tech/jev-ai-typed-decisions.html"><header><a class="post-meta-categories" href="/categories/tech/" itemprop="url">技术</a><a href="/tags/AI/" tabindex="-1" itemprop="url">AI</a><a href="/tags/Agent/" tabindex="-1" itemprop="url">Agent</a><a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" tabindex="-1" itemprop="url">架构设计</a><h2 class="sr-only" id="CrawlerTitle" itemprop="name headline">Jev AI 是什么？类型化决策能保证什么</h2><span itemprop="author" itemscope itemtype="http://schema.org/Person">灿烂的番茄</span><time itemprop="dateCreated datePublished" datetime="2026-10-29T19:16:00.000Z" title="发表于 2026-10-30 03:16:00">2026-10-30</time><time itemprop="dateCreated datePublished" datetime="2026-10-29T19:28:22.698Z" title="更新于 2026-10-30 03:28:22">2026-10-30</time></header><p>让模型判断一封邮件该交给哪个部门，业务代码实际需要的可能只有一个类别，但聊天模型往往先写一段解释，再把类别放进 JSON，程序还要解析和校验。TypeSafe 的 Jev 选择收窄输出范围。按 <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/introduction">官方文档</a> 的定义，程序把状态和带类型的问题交给 Jev，取得可以直接使用的结构化结果；它属于 TypeSafe 所称的 <strong>System One 模型</strong>，不生成自由文本。读者若搜“Jev AI 是什么”，可以先把它理解为嵌在软件流程中的决策模型，而非另一个用来长篇聊天的助手。</p>
+<h2 id="输入状态，输出受约束的判断"><a href="#输入状态，输出受约束的判断" class="headerlink" title="输入状态，输出受约束的判断" aria-label="输入状态，输出受约束的判断"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>输入状态，输出受约束的判断</h2><p>这里的 state 是供模型判断的上下文，可以包含文本等非结构化材料；question 则规定要问什么、答案允许是什么形态。官方文档主张每个问题只问一件边界清楚的事，复杂决策拆成多个问题，再在业务代码中组合结果。这样的设计把一部分责任交还给程序员：哪些因素要看、怎样加权、什么时候停止，不能都含糊地塞进一句“请综合判断”。</p>
+<p>截至 2026 年 10 月 30 日，官方 Introduction 列出的三个基本问题类型如下。不同类型的返回字段不同，不能把“所有结果都有 confidence”当成统一接口约定。</p>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>用途</th>
+<th>官方列出的返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Choice</td>
+<td>从给定选项中选择</td>
+<td><code>choice</code>、<code>probabilities</code>、<code>confidence</code></td>
+</tr>
+<tr>
+<td>Score</td>
+<td>按指定评分标准评价状态</td>
+<td><code>score</code>、<code>probabilities</code>、<code>confidence</code></td>
+</tr>
+<tr>
+<td>Noul</td>
+<td>判断一项陈述是否为真</td>
+<td><code>noul</code>，取值为 0 到 1</td>
+</tr>
+</tbody></table>
+<p>同一请求可以混合不同问题类型。文档说明，它们针对同一个 state 独立、并行地求值。这意味着，第二个问题不能偷偷依赖第一个问题刚刚得出的答案；真有依赖关系，应由调用方先接收结果，再组织下一轮请求。是否独立，得看问题的实际含义，不能只看它们被写成了两个字段。</p>
+<h2 id="类型安全不等于判断正确"><a href="#类型安全不等于判断正确" class="headerlink" title="类型安全不等于判断正确" aria-label="类型安全不等于判断正确"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>类型安全不等于判断正确</h2><p><a target="_blank" rel="noopener" href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Jev 发布文</a> 在介绍类型安全时使用了很强的“不产生幻觉”措辞。我觉得这里必须把保证的对象说明白。候选项预先限定为技术支持、账单和人工复核，受约束的输出能避免凭空产生一个接口不认识的第四种部门；但是，在这三个合法选项之中选错，仍是需要评估的语义错误。一个结果能被程序顺利消费，与这个结果符合业务事实，毕竟是两件事。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/27811/01.png" alt="TypeSafe 官方 Jev 发布文中关于幻觉和类型安全的说明图"></p>
+<p><em>配图来自 TypeSafe 官方发布文的 Hallucination and Type-safety 小节，表达厂商对类型约束的说明，不是本站独立测试结果。</em></p>
+<p>概率和置信信息可以帮助决定是否行动，却也需要验证。若某一批结果自报较高把握，实际错误率仍然很高，业务就不能照单全收。官方发布文强调校准概率，这是模型的设计目标与厂商说明；上线前仍应拿自己的任务数据核对。尤其是退款、权限变更和医疗等高代价判断，即使结果类型完全正确，也不应因为能得到一个数字就自动执行。</p>
+<p>格式过关，只过了一关。</p>
+<h2 id="在-Agent-工作流中放在哪里"><a href="#在-Agent-工作流中放在哪里" class="headerlink" title="在 Agent 工作流中放在哪里" aria-label="在 Agent 工作流中放在哪里"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>在 Agent 工作流中放在哪里</h2><p>以邮件分流为例，本文的工程设想是先取得邮件和必要的业务上下文，让模型判断类别，再由代码检查是否允许自动分流；材料缺失或判断不稳时交给人工。对外发信、退款等动作另走权限校验和审批。这里没有调用 Jev API，也没有经过实测的阈值，示例只说明职责怎样划分。不能把一个看起来整齐的流程，冒充已经跑通的接入教程。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>可考虑的决策问题</th>
+<th>仍由业务系统承担的责任</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>工单分流</td>
+<td>从既定队列中选一个</td>
+<td>校验队列权限，处理信息不足的工单</td>
+</tr>
+<tr>
+<td>搜索结果筛选</td>
+<td>按给定相关性标准打分</td>
+<td>保留来源，评价误删重要结果的损失</td>
+</tr>
+<tr>
+<td>Agent 工具选择</td>
+<td>在允许的候选工具中选择</td>
+<td>验证参数、访问权限与执行后果</td>
+</tr>
+</tbody></table>
+<p>若任务本来就是写文章、生成代码、给出解释，自由文本输出仍有用处，不能因为决策模型速度的宣传就把整个生成环节删掉。Jev 比较适合讨论的是流程中的局部判断。本站的 <a href="/tech/deepseek-harness-guide.html">DeepSeek Harness 入门</a> 解释了运行框架如何组织模型、工具和会话；Jev 属于其中可考虑的决策能力，本文并未验证它与该框架的直接兼容性，也没有声称已经存在可安装的对应插件。</p>
+<h2 id="接入前先做一份错误清单"><a href="#接入前先做一份错误清单" class="headerlink" title="接入前先做一份错误清单" aria-label="接入前先做一份错误清单"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>接入前先做一份错误清单</h2><p>真正试用时，应从 <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/introduction/quickstart">TypeSafe 官方 Quick Start</a> 进入，按当前文档确认账户、模型标识和 SDK，而非照抄来源不明的接口示例。我会先准备一组有人工标注的样本，保留含混邮件、缺字段、混合意图和恶意指令等难例，把“输出是否合法”“判断是否正确”“需要人工处理的比例”分开记录。类型错误变少固然有价值，漏掉高风险工单的代价却可能更大，这种差别需要在验收指标里体现。</p>
+<p>延迟也应算端到端的。网络、排队、重试和业务校验都在调用链上，厂商演示里的速度并不能直接换算成自家服务的响应时间。TypeSafe 发布文含有性能对比，但本文不把它转述成独立基准，更不据此保证能便宜多少、快多少。先固定样本、版本和调用条件，再与现有实现比较，才能知道节省的是解析工作，还是整个流程的成本。</p>
+<p>从这个角度看，Jev 值得关注的地方很具体：把输出限制在软件需要的范围内，让程序更容易组合模型判断。至于程序是否应该相信那个判断，仍然要靠数据和责任边界来回答。模型少说几句话，不等于系统可以少做验证。</p>
+<p>资料：<a target="_blank" rel="noopener" href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">TypeSafe 官方 Jev 发布文</a> · <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/introduction">Introduction 与类型表</a> · <a target="_blank" rel="noopener" href="https://docs.typesafe.ai/introduction/quickstart">官方 Quick Start</a>。核对日期：2026-10-30。</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">灿烂的番茄</div><div class="post-copyright__author_desc">AI编程实战 · 创业案例复盘 · 开源项目评测 · Hexo博客搭建手记</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.vastnext.com/tech/jev-ai-typed-decisions.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.vastnext.com/tech/jev-ai-typed-decisions.html')">Jev AI 是什么？类型化决策能保证什么</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.vastnext.com/tech/jev-ai-typed-decisions.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Jev AI 是什么？类型化决策能保证什么&amp;url=https://blog.vastnext.com/tech/jev-ai-typed-decisions.html&amp;pic=/images/27811/01.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.vastnext.com" target="_blank">番茄说</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/tech/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>技术<span class="categoryesPageCount">60</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/AI/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>AI<span class="tagsPageCount">40</span></a><a class="post-meta__box__tags" href="/tags/Agent/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Agent<span class="tagsPageCount">15</span></a><a class="post-meta__box__tags" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>架构设计<span class="tagsPageCount">2</span></a></div></div><div class="post_share"><div class="social-share" data-image="/images/34736/01.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div></div><!-- 辅助函数：图片加载失败时隐藏图片，让黑底透出--><!-- 优先使用 frontmatter 自定义 series_prev/series_next（系列教程专用）--><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/tech/claude-mem-persistent-context-guide.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/1153/cover_001.jpg" onerror="this.onerror=null;this.style.display='none'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析</div></div></a></div><div class="next-post pull-right"><a href="/tech/grok-bot-pricing-permissions.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/47225/01.webp" onerror="this.onerror=null;this.style.display='none'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Grok Bot 是什么？价格、共享云电脑和授权边界</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/tech/cloudflare-clef-decision-model-guide.html" title="Cloudflare Clef 与决策模型：AI Agent 为什么不再用大模型做路由"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/49637/cover_001.jpg" alt="Cloudflare Clef 与决策模型：AI Agent 为什么不再用大模型做路由" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-22</div><div class="title">Cloudflare Clef 与决策模型：AI Agent 为什么不再用大模型做路由</div></div></a></div><div><a href="/tech/antigravity-ide-vs-app.html" title="Antigravity IDE 和 App 怎么选？下载前先分清用途"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/13372/01.jpg" alt="Antigravity IDE 和 App 怎么选？下载前先分清用途" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-30</div><div class="title">Antigravity IDE 和 App 怎么选？下载前先分清用途</div></div></a></div><div><a href="/tech/claude-mem-persistent-context-guide.html" title="Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/1153/cover_001.jpg" alt="Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-24</div><div class="title">Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析</div></div></a></div><div><a href="/tech/cloudflare-security-audit-skill-guide.html" title="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/16871/cover_001.jpg" alt="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-14</div><div class="title">Cloudflare Security Audit Skill 怎么用：先看它如何验证发现</div></div></a></div><div><a href="/tech/deepseek-harness-guide.html" title="DeepSeek Harness 入门：从本地启动到插件架构"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/40907/01.png" alt="DeepSeek Harness 入门：从本地启动到插件架构" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-15</div><div class="title">DeepSeek Harness 入门：从本地启动到插件架构</div></div></a></div><div><a href="/tech/grok-bot-pricing-permissions.html" title="Grok Bot 是什么？价格、共享云电脑和授权边界"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/47225/01.webp" alt="Grok Bot 是什么？价格、共享云电脑和授权边界" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-30</div><div class="title">Grok Bot 是什么？价格、共享云电脑和授权边界</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy/" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">专注分享<b style="color:#fff">出海SEO教程</b>与<b style="color:#fff">独立站赚钱</b>实战，从关键词挖掘、谷歌排名优化到工具站变现，手把手教你用AI做网站赚美元。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这里还有<b style="color:#fff">AI编程</b>、<b style="color:#fff">Agent实战</b>、<b style="color:#fff">一人公司创业案例</b>与开源项目评测，帮你用最小成本跑通自己的线上生意。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><h1 class="author-info__name">灿烂的番茄</h1><div class="author-info__desc">AI编程实战 · 创业案例复盘 · 开源项目评测 · Hexo博客搭建手记</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/FountainChan" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/372204786" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E7%8A%B6%E6%80%81%EF%BC%8C%E8%BE%93%E5%87%BA%E5%8F%97%E7%BA%A6%E6%9D%9F%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-number">1.</span> <span class="toc-text">输入状态，输出受约束的判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E4%B8%8D%E7%AD%89%E4%BA%8E%E5%88%A4%E6%96%AD%E6%AD%A3%E7%A1%AE"><span class="toc-number">2.</span> <span class="toc-text">类型安全不等于判断正确</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-Agent-%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%AD%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-number">3.</span> <span class="toc-text">在 Agent 工作流中放在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E5%89%8D%E5%85%88%E5%81%9A%E4%B8%80%E4%BB%BD%E9%94%99%E8%AF%AF%E6%B8%85%E5%8D%95"><span class="toc-number">4.</span> <span class="toc-text">接入前先做一份错误清单</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/tech/opencode-go-worth-it.html" title="OpenCode Go 值不值 10 美元：低价编程订阅适合谁，不适合谁"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/34736/01.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="OpenCode Go 值不值 10 美元：低价编程订阅适合谁，不适合谁"/></a><div class="content"><a class="title" href="/tech/opencode-go-worth-it.html" title="OpenCode Go 值不值 10 美元：低价编程订阅适合谁，不适合谁">OpenCode Go 值不值 10 美元：低价编程订阅适合谁，不适合谁</a><time datetime="2026-10-30T03:05:00.000Z" title="发表于 2026-10-30 11:05:00">2026-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/karpathy-coding-principles.html" title="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/24333/01.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"/></a><div class="content"><a class="title" href="/tech/karpathy-coding-principles.html" title="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它">Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它</a><time datetime="2026-10-30T02:20:00.000Z" title="发表于 2026-10-30 10:20:00">2026-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/antigravity-ide-vs-app.html" title="Antigravity IDE 和 App 怎么选？下载前先分清用途"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/13372/01.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Antigravity IDE 和 App 怎么选？下载前先分清用途"/></a><div class="content"><a class="title" href="/tech/antigravity-ide-vs-app.html" title="Antigravity IDE 和 App 怎么选？下载前先分清用途">Antigravity IDE 和 App 怎么选？下载前先分清用途</a><time datetime="2026-10-29T19:16:00.000Z" title="发表于 2026-10-30 03:16:00">2026-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/grok-bot-pricing-permissions.html" title="Grok Bot 是什么？价格、共享云电脑和授权边界"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/47225/01.webp" onerror="this.onerror=null;this.src='/img/404.png'" alt="Grok Bot 是什么？价格、共享云电脑和授权边界"/></a><div class="content"><a class="title" href="/tech/grok-bot-pricing-permissions.html" title="Grok Bot 是什么？价格、共享云电脑和授权边界">Grok Bot 是什么？价格、共享云电脑和授权边界</a><time datetime="2026-10-29T19:16:00.000Z" title="发表于 2026-10-30 03:16:00">2026-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/jev-ai-typed-decisions.html" title="Jev AI 是什么？类型化决策能保证什么"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/27811/01.png" onerror="this.onerror=null;this.src='/img/404.png'" alt="Jev AI 是什么？类型化决策能保证什么"/></a><div class="content"><a class="title" href="/tech/jev-ai-typed-decisions.html" title="Jev AI 是什么？类型化决策能保证什么">Jev AI 是什么？类型化决策能保证什么</a><time datetime="2026-10-29T19:16:00.000Z" title="发表于 2026-10-30 03:16:00">2026-10-30</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2008 - 2026 By <a class="footer-bar-link" href="/" title="灿烂的番茄" target="_blank">灿烂的番茄</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" href="/resource/" title="技术栈">技术栈</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">135</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://ahhfs.com/" title="资库"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/ahhfs.svg" alt="资库"/><span class="back-menu-item-text">资库</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于我</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem; color: rgb(89, 47, 189);">AI<sup>40</sup></a><a href="/tags/AIGC/" style="font-size: 0.88rem; color: rgb(172, 81, 72);">AIGC<sup>3</sup></a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" style="font-size: 0.88rem; color: rgb(102, 158, 42);">AI编程<sup>12</sup></a><a href="/tags/AWS/" style="font-size: 0.88rem; color: rgb(35, 132, 136);">AWS<sup>1</sup></a><a href="/tags/Agent/" style="font-size: 0.88rem; color: rgb(92, 198, 198);">Agent<sup>15</sup></a><a href="/tags/Agentic-Engineering/" style="font-size: 0.88rem; color: rgb(66, 127, 21);">Agentic Engineering<sup>1</sup></a><a href="/tags/Claude-Code/" style="font-size: 0.88rem; color: rgb(89, 24, 92);">Claude Code<sup>2</sup></a><a href="/tags/ClaudeCode/" style="font-size: 0.88rem; color: rgb(67, 10, 149);">ClaudeCode<sup>10</sup></a><a href="/tags/Cloudflare/" style="font-size: 0.88rem; color: rgb(63, 142, 94);">Cloudflare<sup>2</sup></a><a href="/tags/Docker/" style="font-size: 0.88rem; color: rgb(44, 111, 101);">Docker<sup>2</sup></a><a href="/tags/Floci/" style="font-size: 0.88rem; color: rgb(77, 52, 135);">Floci<sup>1</sup></a><a href="/tags/GitHub/" style="font-size: 0.88rem; color: rgb(86, 147, 90);">GitHub<sup>20</sup></a><a href="/tags/Github/" style="font-size: 0.88rem; color: rgb(112, 139, 163);">Github<sup>2</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem; color: rgb(152, 193, 139);">Hexo<sup>4</sup></a><a href="/tags/Loop-Engineering/" style="font-size: 0.88rem; color: rgb(155, 16, 105);">Loop Engineering<sup>1</sup></a><a href="/tags/Multi-agent/" style="font-size: 0.88rem; color: rgb(97, 181, 73);">Multi-agent<sup>1</sup></a><a href="/tags/OpenCode/" style="font-size: 0.88rem; color: rgb(149, 196, 141);">OpenCode<sup>3</sup></a><a href="/tags/Ruby/" style="font-size: 0.88rem; color: rgb(21, 116, 55);">Ruby<sup>1</sup></a><a href="/tags/SEO/" style="font-size: 0.88rem; color: rgb(54, 168, 154);">SEO<sup>9</sup></a><a href="/tags/SaaS/" style="font-size: 0.88rem; color: rgb(191, 110, 31);">SaaS<sup>7</sup></a><a href="/tags/Sitemap/" style="font-size: 0.88rem; color: rgb(46, 80, 19);">Sitemap<sup>1</sup></a><a href="/tags/Vibe-Coding/" style="font-size: 0.88rem; color: rgb(102, 49, 55);">Vibe Coding<sup>1</sup></a><a href="/tags/ai/" style="font-size: 0.88rem; color: rgb(170, 105, 65);">ai<sup>3</sup></a><a href="/tags/mcp/" style="font-size: 0.88rem; color: rgb(116, 178, 157);">mcp<sup>2</sup></a><a href="/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/" style="font-size: 0.88rem; color: rgb(192, 76, 82);">互动小说<sup>1</sup></a><a href="/tags/%E5%88%9B%E4%B8%9A%E6%A1%88%E4%BE%8B/" style="font-size: 0.88rem; color: rgb(18, 13, 172);">创业案例<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 0.88rem; color: rgb(42, 162, 21);">前端开发<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 0.88rem; color: rgb(129, 176, 116);">博客搭建<sup>3</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem; color: rgb(109, 13, 8);">开源工具<sup>1</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 0.88rem; color: rgb(44, 88, 178);">开源项目<sup>15</sup></a><a href="/tags/%E6%8A%95%E8%B5%84/" style="font-size: 0.88rem; color: rgb(31, 54, 14);">投资<sup>3</sup></a><a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 0.88rem; color: rgb(61, 35, 108);">架构设计<sup>2</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem; color: rgb(143, 185, 34);">测试<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8FMod/" style="font-size: 0.88rem; color: rgb(184, 20, 84);">游戏Mod<sup>1</sup></a><a href="/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/" style="font-size: 0.88rem; color: rgb(133, 2, 77);">独立开发<sup>20</sup></a><a href="/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/" style="font-size: 0.88rem; color: rgb(145, 29, 125);">知识付费<sup>7</sup></a><a href="/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/" style="font-size: 0.88rem; color: rgb(149, 76, 169);">视频剪辑<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" style="font-size: 0.88rem; color: rgb(127, 157, 53);">软件安全<sup>2</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 0.88rem; color: rgb(198, 68, 187);">软件推荐<sup>1</sup></a><a href="/tags/%E9%87%91%E8%9E%8D/" style="font-size: 0.88rem; color: rgb(143, 113, 102);">金融<sup>7</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2008 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 灿烂的番茄 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@10.2.4/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
