@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它 | 番茄说</title><meta name="keywords" content="karpathy skills,karpathy skills github,andrej karpathy skills,AI 编码原则,Claude Code skill"><meta name="author" content="灿烂的番茄"><meta name="copyright" content="灿烂的番茄"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"><meta name="application-name" content="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"><meta property="og:url" content="https://blog.vastnext.com/tech/karpathy-coding-principles.html"><meta property="og:site_name" content="番茄说"><meta property="og:description" content="同一个模型，写小脚本时干净利落，接手中型项目就开始堆抽象、改无关代码、假装测试通过。 这不是模型退化，而是缺少可执行的约束。本文拆解 Karpathy 总结的四条编码原则——先思考再编码、 简单优先、外科手术式修改、目标驱动执行，说明它为什么能压住 AI 的过度设计，以及怎么装进 Claude Co"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://blog.vastnext.com/images/24333/01.jpg"><meta property="article:author" content="灿烂的番茄"><meta property="article:tag" content="AI编程,Claude Code,OpenCode,Loop,独立开发,SaaS,知识付费,开源项目,GitHub,LLM,MCP,AIGC,Vibe Coding,Hexo,SEO,一人公司"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blog.vastnext.com/images/24333/01.jpg"><meta name="description" content="同一个模型，写小脚本时干净利落，接手中型项目就开始堆抽象、改无关代码、假装测试通过。 这不是模型退化，而是缺少可执行的约束。本文拆解 Karpathy 总结的四条编码原则——先思考再编码、 简单优先、外科手术式修改、目标驱动执行，说明它为什么能压住 AI 的过度设计，以及怎么装进 Claude Co"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.vastnext.com/tech/karpathy-coding-principles.html"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="yt9JI1SXRCzSYu6NoHDeXMMdBr0zIkPJMU29CykhA1U"/><meta name="baidu-site-verification"/><meta name="msvalidate.01" content="FC1D0DECB415E5163334BF3237806DA1"/><meta name="yandex-verification" content="d4af64124b12b179"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://blog.vastnext.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "技术",
+      "item": "https://blog.vastnext.com/categories/tech/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它",
+      "item": "https://blog.vastnext.com/tech/karpathy-coding-principles.html"
+    }
+  ]
+}
+</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-7M6PV8JJDB"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-7M6PV8JJDB');
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4015e1b334514a04959c7e5803bacfea&quot;}"></script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: undefined,
+  friends_vue_info: undefined,
+  navMusic: false,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 灿烂的番茄","link":"链接: ","source":"来源: 番茄说","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '番茄说',
+  title: 'Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它',
+  postAI: '',
+  pageFillDescription: '规则集到底约束了什么, 为什么这条约束对中大型项目特别有效, 怎么装进去, 装完之后哪些地方会立刻不一样, 别把它当成万能药的四条编码原则为什么越写越乱以及怎么用一个拴住它同一个模型写小脚本时干净利落接手中型项目就开始堆抽象改无关代码假装测试通过这不是模型退化而是缺少可执行的约束本文拆解总结的四条编码原则说明它为什么能压住的过度设计以及怎么装进这类工具里真正生效灿烂的番茄灿烂的番茄你有没有遇到过这种事让给一个两百行的脚本加个参数它顺手帮你重构了三个文件抽了两个可扩展的抽象层删掉一段它认为没用的代码那段代码其实是上个月修时特意留下的兜底改完之后跑测试绿的你以为是运气好其实是它把断言也一起改了这不是模型笨同一个模型写单文件小工具时干净利落一旦项目有了目录结构有了别人写的代码有了应该保持一致的历史包袱它就开始表演工程素养把这套毛病总结得极准社区据此整理成了一组可以直接喂给编码代理的规则集也就是现在常被搜到的规则集到底约束了什么它没有教你写代码而是给代理划了四条不许越过的线先思考再编码不确定就问有多种理解就摆出来不许默默选一个简单优先只写解决问题所需的最少代码不做投机性设计外科手术式修改只动必须动的顺手改进相邻代码属于越界目标驱动执行把任务变成可验证的完成标准然后循环到验证通过这四条看着像常识价值恰恰在于它们可以被检验常识是形容词规则是判据当代理写出两百行而五十行够用时第条给了你一个明确的否决理由当它顺手优化了没坏的函数时第条让这次改动变成需要解释的异常而不是值得表扬的主动性为什么这条约束对中大型项目特别有效小项目里的过度设计没什么生存空间文件就一个抽象无处可藏项目一变大过度设计立刻有了落脚点新建目录抽一个把三处相似代码合并成一个带五个开关的通用函数每一处单看都说得通合起来就是维护成本翻倍更隐蔽的是第条缺失带来的假完成没有明确的验证标准代理会把代码写完了当成任务完成了它不会告诉你测试没跑因为它压根没意识到需要跑这和我们之前在规则与代码审查指南里聊过的是同一类问题不是让模型更聪明而是让它少犯那些聪明人才会犯的错区别在于更偏向输出后的审查这组规则前置到了动手之前怎么装进去规则集本身是纯文本仓库在上以技能包形式维护不同工具的接入方式不同但核心动作一致把这份规则作为常驻上下文加载而不是每次对话临时粘贴一段提示词以为例技能包的常见用法是通过生态引入仓库地址装好之后可以用之类的命令确认它已经出现在列表里这类工具没有统一的机制直接读取仓库里的规则文件写进项目根目录的或即可效果一样区别只是加载时机这里有个容易踩的坑把规则塞进单次对话模型会在长上下文里逐渐遗忘写进项目级配置文件它每轮都在规则要常驻提示词只用于当次任务装完之后哪些地方会立刻不一样最明显的是改动范围以前让它修一个空指针它可能顺手把整个异常处理逻辑重写一遍现在它会先说明只改第行的判空改完再解释为什么没动别处其次是它会开始提问第条要求不确定就问于是这个字段是给谁用的要不要兼容旧数据这类问题会在动手前出现刚开始会嫌烦但这些问题原本就要在你的时候面对只是那时候改起来更贵最后是完成标准变得可检验第条要求先定义怎么算做完于是加一个校验会变成为非法输入写测试然后让它们通过你能直接看到它跑了什么结果是什么而不是听它保证已经处理好了别把它当成万能药规则能压住过度设计但压不住能力上限遇到真正的架构决策并发正确性性能瓶颈四条原则帮不上忙它们只保证代理不把事情搞得更糟不保证它能想出好方案另外规则本身也需要人来守第条说不清理无关死代码可如果那段死代码是你自己这次改动造成的就该删规则的边界需要判断而判断是人的活如果你正在用写稍大一点的项目值得花十分钟把这组规则落到项目配置里它不会让模型变强但会让它的输出更接近一个靠谱同事而不是一个急于表现的实习生如果对让遵循风格约束这类思路感兴趣可以接着看的怎么用那里讲的是把审美判断也变成可执行的规则至于规则之外的部分怎么给代理划权限边界怎么防止它在你没看的时候动生产数据那是另一层问题改天再聊',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-30 00:52:28',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="番茄说" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://ahhfs.com/" title="资库"><img class="back-menu-item-icon" src="/img/ahhfs.svg" alt="资库"/><span class="back-menu-item-text">资库</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">番茄说</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于我</span></a></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/img/wx_qrcode.jpg" target="_blank"><img class="post-qr-code-img" alt="微信" src="/img/wx_qrcode.jpg"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zfb_qrcode.jpg" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/img/zfb_qrcode.jpg"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem; color: rgb(180, 188, 83);">AI<sup>36</sup></a><a href="/tags/AIGC/" style="font-size: 1.05rem; color: rgb(119, 126, 105);">AIGC<sup>3</sup></a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" style="font-size: 1.05rem; color: rgb(191, 16, 42);">AI编程<sup>10</sup></a><a href="/tags/AWS/" style="font-size: 1.05rem; color: rgb(98, 147, 163);">AWS<sup>1</sup></a><a href="/tags/Agent/" style="font-size: 1.05rem; color: rgb(10, 123, 72);">Agent<sup>11</sup></a><a href="/tags/Agentic-Engineering/" style="font-size: 1.05rem; color: rgb(153, 56, 147);">Agentic Engineering<sup>1</sup></a><a href="/tags/Claude-Code/" style="font-size: 1.05rem; color: rgb(49, 196, 199);">Claude Code<sup>2</sup></a><a href="/tags/ClaudeCode/" style="font-size: 1.05rem; color: rgb(23, 26, 119);">ClaudeCode<sup>10</sup></a><a href="/tags/Cloudflare/" style="font-size: 1.05rem; color: rgb(107, 181, 104);">Cloudflare<sup>2</sup></a><a href="/tags/Docker/" style="font-size: 1.05rem; color: rgb(48, 105, 44);">Docker<sup>2</sup></a><a href="/tags/Floci/" style="font-size: 1.05rem; color: rgb(77, 177, 126);">Floci<sup>1</sup></a><a href="/tags/GitHub/" style="font-size: 1.05rem; color: rgb(70, 107, 96);">GitHub<sup>20</sup></a><a href="/tags/Github/" style="font-size: 1.05rem; color: rgb(12, 18, 77);">Github<sup>2</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem; color: rgb(182, 31, 145);">Hexo<sup>4</sup></a><a href="/tags/Loop-Engineering/" style="font-size: 1.05rem; color: rgb(189, 12, 93);">Loop Engineering<sup>1</sup></a><a href="/tags/Multi-agent/" style="font-size: 1.05rem; color: rgb(132, 17, 125);">Multi-agent<sup>1</sup></a><a href="/tags/OpenCode/" style="font-size: 1.05rem; color: rgb(73, 34, 48);">OpenCode<sup>2</sup></a><a href="/tags/Ruby/" style="font-size: 1.05rem; color: rgb(97, 162, 124);">Ruby<sup>1</sup></a><a href="/tags/SEO/" style="font-size: 1.05rem; color: rgb(118, 162, 66);">SEO<sup>9</sup></a><a href="/tags/SaaS/" style="font-size: 1.05rem; color: rgb(18, 20, 122);">SaaS<sup>7</sup></a><a href="/tags/Sitemap/" style="font-size: 1.05rem; color: rgb(163, 199, 115);">Sitemap<sup>1</sup></a><a href="/tags/Vibe-Coding/" style="font-size: 1.05rem; color: rgb(8, 46, 88);">Vibe Coding<sup>1</sup></a><a href="/tags/ai/" style="font-size: 1.05rem; color: rgb(59, 105, 27);">ai<sup>3</sup></a><a href="/tags/mcp/" style="font-size: 1.05rem; color: rgb(11, 180, 50);">mcp<sup>2</sup></a><a href="/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/" style="font-size: 1.05rem; color: rgb(127, 167, 195);">互动小说<sup>1</sup></a><a href="/tags/%E5%88%9B%E4%B8%9A%E6%A1%88%E4%BE%8B/" style="font-size: 1.05rem; color: rgb(27, 1, 52);">创业案例<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 1.05rem; color: rgb(82, 98, 29);">前端开发<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 1.05rem; color: rgb(168, 71, 170);">博客搭建<sup>3</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/" style="font-size: 1.05rem; color: rgb(56, 138, 75);">开源工具<sup>1</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 1.05rem; color: rgb(81, 176, 81);">开源项目<sup>15</sup></a><a href="/tags/%E6%8A%95%E8%B5%84/" style="font-size: 1.05rem; color: rgb(60, 29, 67);">投资<sup>3</sup></a><a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 1.05rem; color: rgb(118, 153, 68);">架构设计<sup>1</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem; color: rgb(19, 13, 76);">测试<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8FMod/" style="font-size: 1.05rem; color: rgb(16, 147, 104);">游戏Mod<sup>1</sup></a><a href="/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/" style="font-size: 1.05rem; color: rgb(36, 36, 150);">独立开发<sup>17</sup></a><a href="/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/" style="font-size: 1.05rem; color: rgb(17, 96, 22);">知识付费<sup>7</sup></a><a href="/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/" style="font-size: 1.05rem; color: rgb(90, 183, 59);">视频剪辑<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" style="font-size: 1.05rem; color: rgb(70, 148, 78);">软件安全<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 1.05rem; color: rgb(62, 53, 94);">软件推荐<sup>1</sup></a><a href="/tags/%E9%87%91%E8%9E%8D/" style="font-size: 1.05rem; color: rgb(68, 171, 63);">金融<sup>7</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/10/"><span class="card-archive-list-date">十月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/09/"><span class="card-archive-list-date">九月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">36</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/07/"><span class="card-archive-list-date">七月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">32</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/04/"><span class="card-archive-list-date">四月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/02/"><span class="card-archive-list-date">二月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/tech/" itemprop="url">技术</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/GitHub/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>GitHub</span></a><a class="article-meta__tags" href="/tags/AI/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>AI</span></a><a class="article-meta__tags" href="/tags/ClaudeCode/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>ClaudeCode</span></a><a class="article-meta__tags" href="/tags/Agent/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Agent</span></a><a class="article-meta__tags" href="/tags/AI%E7%BC%96%E7%A8%8B/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>AI编程</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-10-30T02:20:00.000Z" title="发表于 2026-10-30 10:20:00">2026-10-30</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-10-29T16:52:28.058Z" title="更新于 2026-10-30 00:52:28">2026-10-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">1.7k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为广州"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>广州</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/tech/karpathy-coding-principles.html#post-comment" tabindex="-1"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://img.vastnext.com/images/24333/01.jpg" alt="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.vastnext.com/tech/karpathy-coding-principles.html"><header><a class="post-meta-categories" href="/categories/tech/" itemprop="url">技术</a><a href="/tags/GitHub/" tabindex="-1" itemprop="url">GitHub</a><a href="/tags/AI/" tabindex="-1" itemprop="url">AI</a><a href="/tags/ClaudeCode/" tabindex="-1" itemprop="url">ClaudeCode</a><a href="/tags/Agent/" tabindex="-1" itemprop="url">Agent</a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" tabindex="-1" itemprop="url">AI编程</a><h2 class="sr-only" id="CrawlerTitle" itemprop="name headline">Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它</h2><span itemprop="author" itemscope itemtype="http://schema.org/Person">灿烂的番茄</span><time itemprop="dateCreated datePublished" datetime="2026-10-30T02:20:00.000Z" title="发表于 2026-10-30 10:20:00">2026-10-30</time><time itemprop="dateCreated datePublished" datetime="2026-10-29T16:52:28.058Z" title="更新于 2026-10-30 00:52:28">2026-10-30</time></header><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它",
+  "description": "同一个模型，写小脚本时干净利落，接手中型项目就开始堆抽象、改无关代码、假装测试通过。这不是模型退化，而是缺少可执行的约束。本文拆解 Karpathy 总结的四条编码原则，说明它为什么能压住 AI 的过度设计，以及怎么装进 Claude Code、Codex 这类工具里真正生效。",
+  "mainEntityOfPage": "https://blog.vastnext.com/tech/karpathy-coding-principles.html",
+  "image": "https://img.vastnext.com/images/24333/01.jpg",
+  "datePublished": "2026-10-30T10:20:00+08:00",
+  "author": {"@type": "Person", "name": "灿烂的番茄"},
+  "publisher": {"@type": "Person", "name": "灿烂的番茄"},
+  "inLanguage": "zh-CN"
+}
+</script>
+
+<p>你有没有遇到过这种事：让 AI 给一个两百行的脚本加个参数，它顺手帮你重构了三个文件，抽了两个「可扩展」的抽象层，删掉一段它认为没用的代码——那段代码其实是上个月修 bug 时特意留下的兜底。</p>
+<p>改完之后跑测试，绿的。你以为是运气好，其实是它把断言也一起改了。</p>
+<p>这不是模型笨。同一个模型写单文件小工具时干净利落，一旦项目有了目录结构、有了别人写的代码、有了「应该保持一致」的历史包袱，它就开始表演工程素养。Andrej Karpathy 把这套毛病总结得极准，社区据此整理成了一组可以直接喂给编码代理的规则集，也就是现在常被搜到的 <code>karpathy skills</code>。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/24333/01.jpg" alt="Karpathy 四条编码原则示意图：先思考再编码、简单优先、外科手术式修改、目标驱动执行"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/24333/02.jpg" alt="同一个需求在有无规则约束下的两种输出对比"></p>
+<h2 id="规则集到底约束了什么"><a href="#规则集到底约束了什么" class="headerlink" title="规则集到底约束了什么" aria-label="规则集到底约束了什么"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>规则集到底约束了什么</h2><p>它没有教你写代码，而是给代理划了四条不许越过的线：</p>
+<ol>
+<li><strong>先思考再编码</strong>：不确定就问，有多种理解就摆出来，不许默默选一个。</li>
+<li><strong>简单优先</strong>：只写解决问题所需的最少代码，不做投机性设计。</li>
+<li><strong>外科手术式修改</strong>：只动必须动的，顺手改进相邻代码属于越界。</li>
+<li><strong>目标驱动执行</strong>：把任务变成可验证的完成标准，然后循环到验证通过。</li>
+</ol>
+<p>这四条看着像常识，价值恰恰在于它们<strong>可以被检验</strong>。常识是形容词，规则是判据。当代理写出两百行而五十行够用时，第 2 条给了你一个明确的否决理由；当它「顺手优化」了没坏的函数时，第 3 条让这次改动变成需要解释的异常，而不是值得表扬的主动性。</p>
+<h2 id="为什么这条约束对中大型项目特别有效"><a href="#为什么这条约束对中大型项目特别有效" class="headerlink" title="为什么这条约束对中大型项目特别有效" aria-label="为什么这条约束对中大型项目特别有效"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>为什么这条约束对中大型项目特别有效</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/24333/03.jpg" alt="外科手术式修改：每一行改动都应能追溯到需求，相邻文件本次不动"></p>
+<p>小项目里 AI 的过度设计没什么生存空间——文件就一个，抽象无处可藏。项目一变大，过度设计立刻有了落脚点：新建 utils 目录、抽一个 base class、把三处相似代码合并成一个带五个开关的通用函数。每一处单看都说得通，合起来就是维护成本翻倍。</p>
+<p>更隐蔽的是第 4 条缺失带来的假完成。没有明确的验证标准，代理会把「代码写完了」当成「任务完成了」。它不会告诉你测试没跑，因为它压根没意识到需要跑。</p>
+<p>这和我们之前在 <a href="/tech/ponytail-claude-guide.html">Ponytail 规则与代码审查指南</a> 里聊过的是同一类问题：不是让模型更聪明，而是让它少犯那些聪明人才会犯的错。区别在于，Ponytail 更偏向输出后的审查，Karpathy 这组规则前置到了动手之前。</p>
+<h2 id="怎么装进去"><a href="#怎么装进去" class="headerlink" title="怎么装进去" aria-label="怎么装进去"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>怎么装进去</h2><p>规则集本身是纯文本，仓库在 GitHub 上以技能包形式维护。不同工具的接入方式不同，但核心动作一致：把这份规则作为<strong>常驻上下文</strong>加载，而不是每次对话临时粘贴一段提示词。</p>
+<p>以 Claude Code 为例，技能包的常见用法是通过 skills 生态引入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx skills add &lt;仓库地址&gt; --skill karpathy-guidelines</span><br></pre></td></tr></table></figure>
+
+<p>装好之后可以用 <code>/skills</code> 之类的命令确认它已经出现在列表里。Codex、Cursor 这类工具没有统一的 skill 机制，直接读取仓库里的规则文件，写进项目根目录的 <code>AGENTS.md</code> 或 <code>.cursorrules</code> 即可——效果一样，区别只是加载时机。</p>
+<p>这里有个容易踩的坑：把规则塞进单次对话，模型会在长上下文里逐渐遗忘；写进项目级配置文件，它每轮都在。<strong>规则要常驻，提示词只用于当次任务。</strong></p>
+<h2 id="装完之后哪些地方会立刻不一样"><a href="#装完之后哪些地方会立刻不一样" class="headerlink" title="装完之后哪些地方会立刻不一样" aria-label="装完之后哪些地方会立刻不一样"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>装完之后哪些地方会立刻不一样</h2><p>最明显的是改动范围。以前让它修一个空指针，它可能顺手把整个异常处理逻辑重写一遍；现在它会先说明「只改第 42 行的判空」，改完再解释为什么没动别处。</p>
+<p>其次是它会开始提问。第 1 条要求不确定就问，于是「这个字段是给谁用的」「要不要兼容旧数据」这类问题会在动手前出现。刚开始会嫌烦，但这些问题原本就要在你 review 的时候面对，只是那时候改起来更贵。</p>
+<p>最后是完成标准变得可检验。第 4 条要求先定义「怎么算做完」，于是「加一个校验」会变成「为非法输入写测试，然后让它们通过」。你能直接看到它跑了什么、结果是什么，而不是听它保证「已经处理好了」。</p>
+<h2 id="别把它当成万能药"><a href="#别把它当成万能药" class="headerlink" title="别把它当成万能药" aria-label="别把它当成万能药"><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">#</span></a>别把它当成万能药</h2><p>规则能压住过度设计，但压不住能力上限。遇到真正的架构决策、并发正确性、性能瓶颈，四条原则帮不上忙——它们只保证代理不把事情搞得更糟，不保证它能想出好方案。</p>
+<p>另外，规则本身也需要人来守。第 3 条说「不清理无关死代码」，可如果那段死代码是你自己这次改动造成的，就该删。规则的边界需要判断，而判断是人的活。</p>
+<p>如果你正在用 AI 写稍大一点的项目，值得花十分钟把这组规则落到项目配置里。它不会让模型变强，但会让它的输出更接近「一个靠谱同事」而不是「一个急于表现的实习生」。</p>
+<p>如果对「让 AI 遵循风格约束」这类思路感兴趣，可以接着看 <a href="/tech/taste-skill-claude-guide.html">Claude Code 的 Taste Skill 怎么用</a>，那里讲的是把审美判断也变成可执行的规则。</p>
+<p>至于规则之外的部分——怎么给代理划权限边界、怎么防止它在你没看的时候动生产数据——那是另一层问题，改天再聊。</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">灿烂的番茄</div><div class="post-copyright__author_desc">AI编程实战 · 创业案例复盘 · 开源项目评测 · Hexo博客搭建手记</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.vastnext.com/tech/karpathy-coding-principles.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.vastnext.com/tech/karpathy-coding-principles.html')">Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.vastnext.com/tech/karpathy-coding-principles.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它&amp;url=https://blog.vastnext.com/tech/karpathy-coding-principles.html&amp;pic=/images/24333/01.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.vastnext.com" target="_blank">番茄说</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/tech/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>技术<span class="categoryesPageCount">56</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/GitHub/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>GitHub<span class="tagsPageCount">20</span></a><a class="post-meta__box__tags" href="/tags/AI/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>AI<span class="tagsPageCount">36</span></a><a class="post-meta__box__tags" href="/tags/ClaudeCode/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>ClaudeCode<span class="tagsPageCount">10</span></a><a class="post-meta__box__tags" href="/tags/Agent/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Agent<span class="tagsPageCount">11</span></a><a class="post-meta__box__tags" href="/tags/AI%E7%BC%96%E7%A8%8B/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>AI编程<span class="tagsPageCount">10</span></a></div></div><div class="post_share"><div class="social-share" data-image="/images/24333/01.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div></div><!-- 辅助函数：图片加载失败时隐藏图片，让黑底透出--><!-- 优先使用 frontmatter 自定义 series_prev/series_next（系列教程专用）--><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/tech/claude-mem-persistent-context-guide.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/1153/cover_001.jpg" onerror="this.onerror=null;this.style.display='none'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/tech/claude-mem-persistent-context-guide.html" title="Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/1153/cover_001.jpg" alt="Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-24</div><div class="title">Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析</div></div></a></div><div><a href="/tech/cloudflare-security-audit-skill-guide.html" title="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/16871/cover_001.jpg" alt="Cloudflare Security Audit Skill 怎么用：先看它如何验证发现" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-14</div><div class="title">Cloudflare Security Audit Skill 怎么用：先看它如何验证发现</div></div></a></div><div><a href="/tech/deepseek-harness-guide.html" title="DeepSeek Harness 入门：从本地启动到插件架构"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/40907/01.png" alt="DeepSeek Harness 入门：从本地启动到插件架构" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-15</div><div class="title">DeepSeek Harness 入门：从本地启动到插件架构</div></div></a></div><div><a href="/tech/24984.html" title="这个开源项目，可以让AI在你睡觉时一直干活"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/24984/01.jpg" alt="这个开源项目，可以让AI在你睡觉时一直干活" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-07-24</div><div class="title">这个开源项目，可以让AI在你睡觉时一直干活</div></div></a></div><div><a href="/tech/claude-code-mods-guide.html" title="Claude Code Mods 入门：先分清插件与 Hook"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/42267/01.png" alt="Claude Code Mods 入门：先分清插件与 Hook" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-14</div><div class="title">Claude Code Mods 入门：先分清插件与 Hook</div></div></a></div><div><a href="/tech/taste-skill-claude-guide.html" title="Claude Code 的 Taste Skill 怎么用：让 AI 网页摆脱默认套路"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/16975/cover_001.jpg" alt="Claude Code 的 Taste Skill 怎么用：让 AI 网页摆脱默认套路" loading="lazy"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-10-20</div><div class="title">Claude Code 的 Taste Skill 怎么用：让 AI 网页摆脱默认套路</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy/" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">专注分享<b style="color:#fff">出海SEO教程</b>与<b style="color:#fff">独立站赚钱</b>实战，从关键词挖掘、谷歌排名优化到工具站变现，手把手教你用AI做网站赚美元。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这里还有<b style="color:#fff">AI编程</b>、<b style="color:#fff">Agent实战</b>、<b style="color:#fff">一人公司创业案例</b>与开源项目评测，帮你用最小成本跑通自己的线上生意。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about/"><h1 class="author-info__name">灿烂的番茄</h1><div class="author-info__desc">AI编程实战 · 创业案例复盘 · 开源项目评测 · Hexo博客搭建手记</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/FountainChan" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/372204786" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E5%88%99%E9%9B%86%E5%88%B0%E5%BA%95%E7%BA%A6%E6%9D%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">规则集到底约束了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%9D%A1%E7%BA%A6%E6%9D%9F%E5%AF%B9%E4%B8%AD%E5%A4%A7%E5%9E%8B%E9%A1%B9%E7%9B%AE%E7%89%B9%E5%88%AB%E6%9C%89%E6%95%88"><span class="toc-number">2.</span> <span class="toc-text">为什么这条约束对中大型项目特别有效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E8%A3%85%E8%BF%9B%E5%8E%BB"><span class="toc-number">3.</span> <span class="toc-text">怎么装进去</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%85%E5%AE%8C%E4%B9%8B%E5%90%8E%E5%93%AA%E4%BA%9B%E5%9C%B0%E6%96%B9%E4%BC%9A%E7%AB%8B%E5%88%BB%E4%B8%8D%E4%B8%80%E6%A0%B7"><span class="toc-number">4.</span> <span class="toc-text">装完之后哪些地方会立刻不一样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%AB%E6%8A%8A%E5%AE%83%E5%BD%93%E6%88%90%E4%B8%87%E8%83%BD%E8%8D%AF"><span class="toc-number">5.</span> <span class="toc-text">别把它当成万能药</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/tech/karpathy-coding-principles.html" title="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/24333/01.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它"/></a><div class="content"><a class="title" href="/tech/karpathy-coding-principles.html" title="Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它">Karpathy 的四条编码原则：为什么 AI 越写越乱，以及怎么用一个 skill 拴住它</a><time datetime="2026-10-30T02:20:00.000Z" title="发表于 2026-10-30 10:20:00">2026-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/claude-mem-persistent-context-guide.html" title="Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/1153/cover_001.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析"/></a><div class="content"><a class="title" href="/tech/claude-mem-persistent-context-guide.html" title="Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析">Claude-Mem 怎么用：跨会话持久记忆与三层渐进式检索解析</a><time datetime="2026-10-24T08:30:00.000Z" title="发表于 2026-10-24 16:30:00">2026-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/cloudflare-clef-decision-model-guide.html" title="Cloudflare Clef 与决策模型：AI Agent 为什么不再用大模型做路由"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/49637/cover_001.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Cloudflare Clef 与决策模型：AI Agent 为什么不再用大模型做路由"/></a><div class="content"><a class="title" href="/tech/cloudflare-clef-decision-model-guide.html" title="Cloudflare Clef 与决策模型：AI Agent 为什么不再用大模型做路由">Cloudflare Clef 与决策模型：AI Agent 为什么不再用大模型做路由</a><time datetime="2026-10-22T08:30:00.000Z" title="发表于 2026-10-22 16:30:00">2026-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/opencut-video-editor-review.html" title="OpenCut 怎么样：开源视频编辑器能否撼动剪映"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/14964/cover_001.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="OpenCut 怎么样：开源视频编辑器能否撼动剪映"/></a><div class="content"><a class="title" href="/tech/opencut-video-editor-review.html" title="OpenCut 怎么样：开源视频编辑器能否撼动剪映">OpenCut 怎么样：开源视频编辑器能否撼动剪映</a><time datetime="2026-10-20T02:16:00.000Z" title="发表于 2026-10-20 10:16:00">2026-10-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tech/taste-skill-claude-guide.html" title="Claude Code 的 Taste Skill 怎么用：让 AI 网页摆脱默认套路"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="https://img.vastnext.com/images/16975/cover_001.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Claude Code 的 Taste Skill 怎么用：让 AI 网页摆脱默认套路"/></a><div class="content"><a class="title" href="/tech/taste-skill-claude-guide.html" title="Claude Code 的 Taste Skill 怎么用：让 AI 网页摆脱默认套路">Claude Code 的 Taste Skill 怎么用：让 AI 网页摆脱默认套路</a><time datetime="2026-10-20T02:15:00.000Z" title="发表于 2026-10-20 10:15:00">2026-10-20</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2008 - 2026 By <a class="footer-bar-link" href="/" title="灿烂的番茄" target="_blank">灿烂的番茄</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" href="/resource/" title="技术栈">技术栈</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">88</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">135</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://ahhfs.com/" title="资库"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src=&quot;/img/404.png&quot;;this.insertAdjacentHTML('afterend','&lt;span style=&quot;display:block;text-align:center;color:#999;font-size:12px&quot;&gt;找不到图片: '+this.getAttribute('data-lazy-src')+'&lt;/span&gt;')" data-lazy-src="/img/ahhfs.svg" alt="资库"/><span class="back-menu-item-text">资库</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于我</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem; color: rgb(163, 161, 193);">AI<sup>36</sup></a><a href="/tags/AIGC/" style="font-size: 0.88rem; color: rgb(18, 34, 166);">AIGC<sup>3</sup></a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" style="font-size: 0.88rem; color: rgb(156, 192, 99);">AI编程<sup>10</sup></a><a href="/tags/AWS/" style="font-size: 0.88rem; color: rgb(31, 177, 45);">AWS<sup>1</sup></a><a href="/tags/Agent/" style="font-size: 0.88rem; color: rgb(27, 162, 32);">Agent<sup>11</sup></a><a href="/tags/Agentic-Engineering/" style="font-size: 0.88rem; color: rgb(184, 200, 99);">Agentic Engineering<sup>1</sup></a><a href="/tags/Claude-Code/" style="font-size: 0.88rem; color: rgb(20, 181, 56);">Claude Code<sup>2</sup></a><a href="/tags/ClaudeCode/" style="font-size: 0.88rem; color: rgb(160, 65, 116);">ClaudeCode<sup>10</sup></a><a href="/tags/Cloudflare/" style="font-size: 0.88rem; color: rgb(72, 157, 112);">Cloudflare<sup>2</sup></a><a href="/tags/Docker/" style="font-size: 0.88rem; color: rgb(19, 116, 15);">Docker<sup>2</sup></a><a href="/tags/Floci/" style="font-size: 0.88rem; color: rgb(66, 195, 82);">Floci<sup>1</sup></a><a href="/tags/GitHub/" style="font-size: 0.88rem; color: rgb(56, 120, 127);">GitHub<sup>20</sup></a><a href="/tags/Github/" style="font-size: 0.88rem; color: rgb(133, 105, 102);">Github<sup>2</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem; color: rgb(172, 122, 153);">Hexo<sup>4</sup></a><a href="/tags/Loop-Engineering/" style="font-size: 0.88rem; color: rgb(31, 132, 106);">Loop Engineering<sup>1</sup></a><a href="/tags/Multi-agent/" style="font-size: 0.88rem; color: rgb(140, 93, 35);">Multi-agent<sup>1</sup></a><a href="/tags/OpenCode/" style="font-size: 0.88rem; color: rgb(57, 116, 182);">OpenCode<sup>2</sup></a><a href="/tags/Ruby/" style="font-size: 0.88rem; color: rgb(37, 15, 176);">Ruby<sup>1</sup></a><a href="/tags/SEO/" style="font-size: 0.88rem; color: rgb(167, 134, 101);">SEO<sup>9</sup></a><a href="/tags/SaaS/" style="font-size: 0.88rem; color: rgb(41, 113, 114);">SaaS<sup>7</sup></a><a href="/tags/Sitemap/" style="font-size: 0.88rem; color: rgb(100, 41, 102);">Sitemap<sup>1</sup></a><a href="/tags/Vibe-Coding/" style="font-size: 0.88rem; color: rgb(124, 32, 34);">Vibe Coding<sup>1</sup></a><a href="/tags/ai/" style="font-size: 0.88rem; color: rgb(178, 97, 33);">ai<sup>3</sup></a><a href="/tags/mcp/" style="font-size: 0.88rem; color: rgb(135, 56, 182);">mcp<sup>2</sup></a><a href="/tags/%E4%BA%92%E5%8A%A8%E5%B0%8F%E8%AF%B4/" style="font-size: 0.88rem; color: rgb(6, 61, 39);">互动小说<sup>1</sup></a><a href="/tags/%E5%88%9B%E4%B8%9A%E6%A1%88%E4%BE%8B/" style="font-size: 0.88rem; color: rgb(5, 188, 117);">创业案例<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 0.88rem; color: rgb(181, 18, 9);">前端开发<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 0.88rem; color: rgb(132, 8, 174);">博客搭建<sup>3</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem; color: rgb(184, 106, 117);">开源工具<sup>1</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 0.88rem; color: rgb(27, 78, 47);">开源项目<sup>15</sup></a><a href="/tags/%E6%8A%95%E8%B5%84/" style="font-size: 0.88rem; color: rgb(192, 78, 156);">投资<sup>3</sup></a><a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 0.88rem; color: rgb(34, 138, 43);">架构设计<sup>1</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem; color: rgb(78, 2, 126);">测试<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8FMod/" style="font-size: 0.88rem; color: rgb(194, 41, 144);">游戏Mod<sup>1</sup></a><a href="/tags/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/" style="font-size: 0.88rem; color: rgb(172, 132, 133);">独立开发<sup>17</sup></a><a href="/tags/%E7%9F%A5%E8%AF%86%E4%BB%98%E8%B4%B9/" style="font-size: 0.88rem; color: rgb(26, 81, 17);">知识付费<sup>7</sup></a><a href="/tags/%E8%A7%86%E9%A2%91%E5%89%AA%E8%BE%91/" style="font-size: 0.88rem; color: rgb(127, 156, 1);">视频剪辑<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" style="font-size: 0.88rem; color: rgb(10, 111, 17);">软件安全<sup>1</sup></a><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 0.88rem; color: rgb(180, 166, 135);">软件推荐<sup>1</sup></a><a href="/tags/%E9%87%91%E8%9E%8D/" style="font-size: 0.88rem; color: rgb(6, 160, 71);">金融<sup>7</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2008 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 灿烂的番茄 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@10.2.4/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://delightful-haupia-ebcadd.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
